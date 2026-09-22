@@ -23,7 +23,7 @@ A three-line, colour-blind-safe, responsive status line for [Claude Code](https:
 ## Install on a machine
 
 ```bash
-git clone <your-remote> ~/workspace/my-cli-config
+git clone https://github.com/dutykh/my-cli-config.git ~/workspace/my-cli-config
 ~/workspace/my-cli-config/install.sh
 ```
 
@@ -49,3 +49,39 @@ bash ~/.claude/statusline-command.sh --demo unicode 90 # icon mode + simulated w
 * **iTerm2 / Kitty / WezTerm / GNOME Terminal** – pick the Nerd Font in the profile's font setting
 
 Until the terminal uses a Nerd Font, force `ICONS=emoji` in `statusline.conf`.
+
+## Troubleshooting
+
+| symptom | cause and fix |
+|---|---|
+| Boxes, blanks or `?` instead of icons | The terminal font is not a Nerd Font. Either select one (see above) or set `ICONS=emoji` in `~/.claude/statusline.conf`. |
+| No status line at all | Check that `.statusLine` exists in `~/.claude/settings.json`. Re-run `claude/install.sh`, then restart Claude Code. |
+| `✗ jq is required` when installing | Install it: `apt install jq`, `dnf install jq` or `brew install jq`. The status line parses its input with a single `jq` call. |
+| Git segment blank or stale in a huge repo | Status is skipped when git is slower than `GIT_TIMEOUT` (default 0.6 s) and reused for `GIT_CACHE` seconds. Raise either in `statusline.conf`. |
+| Colours look washed out or invisible | The theme is read from Claude Code's `settings.json`, then the terminal's `COLORFGBG`. Force it with `THEME=light` or `THEME=dark`. |
+| Line too crowded on a narrow terminal | `RESPONSIVE=1` drops segments automatically; set `LINES=2` or `LINES=1`, or turn individual `SHOW_*` knobs off. |
+| Config lives somewhere non-standard | `CLAUDE_CONFIG_DIR` relocates `~/.claude`; `CLAUDE_STATUSLINE_CONF` points at a different conf file. |
+
+Check any change without restarting Claude Code:
+
+```bash
+bash ~/.claude/statusline-command.sh --demo nerd 120
+```
+
+## Uninstall
+
+```bash
+rm ~/.claude/statusline-command.sh                  # the symlink
+jq 'del(.statusLine)' ~/.claude/settings.json > ~/.claude/settings.tmp \
+  && mv ~/.claude/settings.tmp ~/.claude/settings.json
+rm ~/.claude/statusline.conf                        # optional — your per-machine knobs
+```
+
+Or restore the backup the installer kept: `ls ~/.claude/settings.json.bak.*`.
+
+---
+
+**Author** — Dr. Denys Dutykh, Mathematics Department, Khalifa University, Abu Dhabi, UAE ·
+[Homepage](https://www.denys-dutykh.com/) · [GitHub](https://github.com/dutykh) ·
+[ORCID](https://orcid.org/0000-0001-5247-2788)
+**License** — [MIT](../LICENSE) · part of [my-cli-config](https://github.com/dutykh/my-cli-config)

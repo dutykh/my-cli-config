@@ -52,7 +52,7 @@ readable on **light and dark** terminal themes.
 ## Install on a machine
 
 ```bash
-git clone <your-remote> ~/workspace/my-cli-config
+git clone https://github.com/dutykh/my-cli-config.git ~/workspace/my-cli-config
 ~/workspace/my-cli-config/install.sh
 # or only this component:
 ~/workspace/my-cli-config/starship/install.sh
@@ -102,3 +102,19 @@ STARSHIP_CONFIG=$PWD/starship/starship.toml starship prompt
 |---|---|
 | `starship.toml` | shared theme (tracked) |
 | `install.sh` | symlink into `~/.config/` |
+
+## Uninstall
+
+```bash
+rm ~/.config/starship.toml                          # the symlink
+```
+
+If the installer backed up a config you had before, restore it: `ls ~/.config/starship.toml.bak.*`.
+Removing the `starship init` line from your shell rc disables the prompt entirely.
+
+---
+
+**Author** — Dr. Denys Dutykh, Mathematics Department, Khalifa University, Abu Dhabi, UAE ·
+[Homepage](https://www.denys-dutykh.com/) · [GitHub](https://github.com/dutykh) ·
+[ORCID](https://orcid.org/0000-0001-5247-2788)
+**License** — [MIT](../LICENSE) · part of [my-cli-config](https://github.com/dutykh/my-cli-config)

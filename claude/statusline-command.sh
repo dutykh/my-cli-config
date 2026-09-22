@@ -11,6 +11,8 @@
 #  Colours  : Okabe–Ito colour-blind-safe palette; truecolor with 256-colour fallback
 #  Layout   : responsive — reads $COLUMNS (set by Claude Code) and drops segments on narrow terminals
 #  Budget   : one jq call, cached git status, /proc reads → typically 30–50 ms
+# Author : Dr. Denys Dutykh — Khalifa University, Abu Dhabi, UAE  <https://www.denys-dutykh.com/>
+# License: MIT — see LICENSE at the repository root
 
 shopt -s nullglob
 
