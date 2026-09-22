@@ -12,18 +12,17 @@
 
 **Claude Code status line** — identity, telemetry, system:
 
-```
-  Fable 5.1 xhigh 1M   ~/workspace/CVDutykh   main ✚2 ⇡1   #42 ✓ approved   main 3.14   dutykh/CVDutykh
-  ctx ━━╌╌╌╌╌╌╌╌ 18% 183k/1M │  cache ● warm 91% 52m ttl 1h │  $3.09  9m43s +86 −1 │  5h ╌╌╌╌╌ 1% ↻15:10  7d ━╌╌╌╌ 15% ↻Thu 17:00
- load 1.27/24 · mem 16% · cpu 4%  ┃  dds@spy · claude 2.1.278 ·  thinking  ┃   Claude status line  ┃  10:27:28
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/claude-statusline-dark.png">
+  <img alt="Claude Code status line: three lines showing model, path, git branch, open PR and toolchain; context, cache, cost and rate-limit gauges; and system load, host and clock" src="docs/claude-statusline-light.png">
+</picture>
 
 **Starship prompt** — blue powerline, readable on light and dark terminals:
 
-```text
- dds  ~/    v3.14.4 (main)   10:33 
-❯
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/starship-prompt-dark.png">
+  <img alt="Starship prompt: a blue powerline bar with user, path, git branch, Python version, command duration and clock, above a chevron input line" src="docs/starship-prompt-light.png">
+</picture>
 
 ## Quick start
 

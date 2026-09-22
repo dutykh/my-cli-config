@@ -3,10 +3,10 @@
 A two-line [Starship](https://starship.rs) prompt: blue powerline segments with Nerd Font icons,
 readable on **light and dark** terminal themes.
 
-```text
- dds  ~/    v3.14.4 (main)   10:33 
-❯
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../docs/starship-prompt-dark.png">
+  <img alt="Starship blue powerline prompt rendered with Nerd Font icons" src="../docs/starship-prompt-light.png">
+</picture>
 
 ## Design
 
@@ -29,25 +29,25 @@ readable on **light and dark** terminal themes.
 
 ## Prompt legend
 
-| element | module | meaning |
-|---|---|---|
-| `` `` `` | (format) | powerline caps / arrows |
-| `` | `os` | OS glyph (Ubuntu shown) |
-| `dds` | `username` | current user |
-| `@host` | `hostname` | only on SSH |
-| ` ~` / path | `directory` | cwd (`` = home); substitutions e.g. `` Downloads, `󰈙` Documents |
-| `` | `directory` | read-only path |
-| ` branch` | `git_branch` | current branch |
-| `` `` `` `` `` `` `󰞇` … | `git_status` | staged / modified / untracked / deleted / ahead / behind / conflict |
-| `` `` `` `` `` `` | node / python / rust / go / php / julia | toolchain when detected |
-| `` | `package` | package version |
-| `` | `docker_context` | docker context |
-| `` | `nix_shell` | nix shell |
-| ` 3s` | `cmd_duration` | last command ≥ 2s |
-| ` 10:33` | `time` | local time `%H:%M` |
-| `❯` | `character` | ready (blue = ok, red = last command failed) |
-| ` …` | `status` | non-zero exit detail |
-| `󰫺 N` | `jobs` | background job count |
+| element | codepoint(s) | module | meaning |
+|---|---|---|---|
+| `` `` `` | `U+E0B6` `U+E0B0` `U+E0B4` | (format) | powerline caps / arrows |
+| `` | `U+F31B` | `os` | OS glyph (Ubuntu shown) |
+| `dds` | — | `username` | current user |
+| `@host` | — | `hostname` | only on SSH |
+| ` ~` / path | `U+F015` | `directory` | cwd (`` = home); substitutions e.g. `` Downloads, `󰈙` Documents |
+| `` | `U+F023` | `directory` | read-only path |
+| ` branch` | `U+F418` | `git_branch` | current branch |
+| `` `` `` `` `` `` `󰞇` … | `U+F055` `U+F044` `U+F128` `U+F014` `U+F062` `U+F063` `U+F0787` `U+2026` | `git_status` | staged / modified / untracked / deleted / ahead / behind / conflict |
+| `` `` `` `` `` `` | `U+ED0D` `U+ED1B` `U+E7A8` `U+E627` `U+E608` `U+E624` | node / python / rust / go / php / julia | toolchain when detected |
+| `` | `U+F487` | `package` | package version |
+| `` | `U+F308` | `docker_context` | docker context |
+| `` | `U+F313` | `nix_shell` | nix shell |
+| ` 3s` | `U+F252` | `cmd_duration` | last command ≥ 2s |
+| ` 10:33` | `U+F017` | `time` | local time `%H:%M` |
+| `❯` | `U+276F` | `character` | ready (blue = ok, red = last command failed) |
+| ` …` | `U+F00D` `U+2026` | `status` | non-zero exit detail |
+| `󰫺 N` | `U+F0AFA` | `jobs` | background job count |
 
 ## Install on a machine
 
