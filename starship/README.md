@@ -1,0 +1,104 @@
+# Starship — blue powerline theme
+
+A two-line [Starship](https://starship.rs) prompt: blue powerline segments with Nerd Font icons,
+readable on **light and dark** terminal themes.
+
+```text
+ dds  ~/    v3.14.4 (main)   10:33 
+❯
+```
+
+## Design
+
+* **Self-painted segments** — each module sets its own blue background + near-white foreground, so the bar does not depend on the terminal background colour.
+* **Dual-theme second line** — `❯` / errors / jobs use mid-tone colours that stay legible on both white and dark terminals.
+* **No empty gaps** — powerline separators live inside module formats, so disabled modules do not leave double arrows.
+* **Blue-only palette** — navy → royal → bright blue; no rainbow language colours.
+
+### Palette
+
+| token | hex | role |
+|---|---|---|
+| blue-900 | `#1E3A8A` | OS / user / clock |
+| blue-700 | `#1D4ED8` | directory |
+| blue-800 | `#1E40AF` | git / duration |
+| blue-600 | `#2563EB` | languages & tools / success `❯` |
+| slate-50 | `#F8FAFC` | primary text on segments |
+| blue-100 | `#DBEAFE` | secondary text on segments |
+| red-600 | `#DC2626` | errors |
+
+## Prompt legend
+
+| element | module | meaning |
+|---|---|---|
+| `` `` `` | (format) | powerline caps / arrows |
+| `` | `os` | OS glyph (Ubuntu shown) |
+| `dds` | `username` | current user |
+| `@host` | `hostname` | only on SSH |
+| ` ~` / path | `directory` | cwd (`` = home); substitutions e.g. `` Downloads, `󰈙` Documents |
+| `` | `directory` | read-only path |
+| ` branch` | `git_branch` | current branch |
+| `` `` `` `` `` `` `󰞇` … | `git_status` | staged / modified / untracked / deleted / ahead / behind / conflict |
+| `` `` `` `` `` `` | node / python / rust / go / php / julia | toolchain when detected |
+| `` | `package` | package version |
+| `` | `docker_context` | docker context |
+| `` | `nix_shell` | nix shell |
+| ` 3s` | `cmd_duration` | last command ≥ 2s |
+| ` 10:33` | `time` | local time `%H:%M` |
+| `❯` | `character` | ready (blue = ok, red = last command failed) |
+| ` …` | `status` | non-zero exit detail |
+| `󰫺 N` | `jobs` | background job count |
+
+## Install on a machine
+
+```bash
+git clone <your-remote> ~/workspace/my-cli-config
+~/workspace/my-cli-config/install.sh
+# or only this component:
+~/workspace/my-cli-config/starship/install.sh
+```
+
+The installer:
+
+1. requires `starship` on `PATH`
+2. backs up an existing real `~/.config/starship.toml` (not a symlink)
+3. symlinks `~/.config/starship.toml` → this repo’s `starship.toml`
+4. prints the one-line shell init snippet if you still need it
+
+Update with `git pull` (symlink keeps machines in sync).
+
+Requirements: [Starship](https://starship.rs), a **Nerd Font** selected in the terminal
+(e.g. JetBrainsMono Nerd Font, FiraCode Nerd Font, MesloLGS Nerd Font).
+
+### Shell init (if not already present)
+
+```bash
+# bash
+eval "$(starship init bash)"
+
+# zsh
+eval "$(starship init zsh)"
+
+# fish
+starship init fish | source
+```
+
+### Nerd Font per terminal
+
+* **Warp** — Settings → Appearance → Text → Font
+* **Zed** — `settings.json`: `"terminal": { "font_family": "JetBrainsMono Nerd Font" }`
+* **iTerm2 / Kitty / WezTerm / GNOME Terminal** — profile font setting
+
+## Preview without switching shell
+
+```bash
+starship prompt
+STARSHIP_CONFIG=$PWD/starship/starship.toml starship prompt
+```
+
+## Files
+
+| file | purpose |
+|---|---|
+| `starship.toml` | shared theme (tracked) |
+| `install.sh` | symlink into `~/.config/` |

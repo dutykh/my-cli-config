@@ -1,0 +1,236 @@
+# Starship — blue powerline theme (Nerd Font icons)
+# Shared via my-cli-config/starship — install with ./install.sh
+# Needs a Nerd Font (e.g. JetBrainsMono Nerd Font) in the terminal.
+#
+# Design notes
+# • Segments paint their own background, so the bar stays readable on both
+#   light and dark terminal themes.
+# • On-segment text is near-white (#F8FAFC) against navy/blue fills (high contrast).
+# • Second-line glyphs (character / status / jobs) use mid-blue / mid-red that
+#   keep acceptable contrast on white and on dark backgrounds.
+# • Separators are embedded in module formats so empty modules leave no gaps.
+
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[](fg:#1E3A8A)\
+$os\
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$nodejs\
+$python\
+$rust\
+$golang\
+$php\
+$julia\
+$package\
+$docker_context\
+$nix_shell\
+$cmd_duration\
+$time\
+$line_break\
+$status\
+$jobs\
+$character\
+"""
+
+right_format = ""
+add_newline = true
+command_timeout = 1000
+scan_timeout = 30
+
+# ── Blue palette ─────────────────────────────────────────────────────────────
+# bg0 #0F172A  slate-900   (deepest, reserved)
+# bg1 #1E3A8A  blue-900    os / user
+# bg2 #1D4ED8  blue-700    directory
+# bg3 #1E40AF  blue-800    git
+# bg4 #2563EB  blue-600    languages / tools
+# bg5 #1E40AF  blue-800    time / duration (darker = readable clock)
+# fg  #F8FAFC  slate-50    primary text on blue segments
+# fg2 #DBEAFE  blue-100    secondary text on blue segments
+# ink #1E3A8A  blue-900    rare dark text on lighter blue (avoided for dual-theme)
+
+[os]
+disabled = false
+style = "fg:#F8FAFC bg:#1E3A8A"
+format = "[$symbol]($style)"
+
+[os.symbols]
+Ubuntu = " "
+Linux = " "
+Arch = " "
+Debian = " "
+Fedora = " "
+NixOS = " "
+Unknown = " "
+
+[username]
+show_always = true
+disabled = false
+style_user = "fg:#F8FAFC bg:#1E3A8A"
+style_root = "fg:#FEE2E2 bg:#1E3A8A"
+format = "[$user]($style)"
+
+[hostname]
+ssh_only = true
+disabled = false
+style = "fg:#DBEAFE bg:#1E3A8A"
+format = "[@$hostname]($style)"
+
+[directory]
+style = "fg:#F8FAFC bg:#1D4ED8"
+format = "[](fg:#1E3A8A bg:#1D4ED8)[ $path ]($style)[$read_only]($read_only_style)"
+truncation_length = 3
+truncation_symbol = "…/"
+truncate_to_repo = true
+read_only = " "
+read_only_style = "fg:#FDE68A bg:#1D4ED8"
+home_symbol = " ~"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+"Videos" = " "
+"Soft" = " "
+"workspace" = " "
+".config" = " "
+".local" = " "
+
+# Git sits on blue-800; leading sep assumes previous segment is directory (blue-700).
+[git_branch]
+symbol = " "
+style = "fg:#F8FAFC bg:#1E40AF"
+format = "[](fg:#1D4ED8 bg:#1E40AF)[ $symbol$branch(:$remote_branch) ]($style)"
+truncation_length = 24
+truncation_symbol = "…"
+
+[git_status]
+style = "fg:#DBEAFE bg:#1E40AF"
+format = '([\[$all_status$ahead_behind\]]($style) )'
+conflicted = "󰞇$count "
+ahead = "$count "
+behind = "$count "
+diverged = "${ahead_count}${behind_count} "
+up_to_date = ""
+untracked = "$count "
+stashed = "󰏖 "
+modified = "$count "
+staged = "$count "
+renamed = "󰁕 "
+deleted = "$count "
+typechanged = "󰆾 "
+
+# Language / tool segments share blue-600. Leading sep color is a soft compromise:
+# looks fine after git (blue-800) or directory (blue-700).
+[nodejs]
+symbol = " "
+style = "fg:#F8FAFC bg:#2563EB"
+format = "[](fg:#1E40AF bg:#2563EB)[ $symbol$version ]($style)"
+detect_files = ["package.json", ".node-version", ".nvmrc"]
+detect_folders = ["node_modules"]
+
+[python]
+symbol = " "
+style = "fg:#F8FAFC bg:#2563EB"
+format = "[](fg:#1E40AF bg:#2563EB)[ $symbol$version( \\($virtualenv\\)) ]($style)"
+pyenv_version_name = false
+detect_extensions = ["py"]
+detect_files = [
+  "requirements.txt",
+  "pyproject.toml",
+  ".python-version",
+  "Pipfile",
+  "pixi.toml",
+]
+detect_folders = [".venv", "venv"]
+
+[rust]
+symbol = " "
+style = "fg:#F8FAFC bg:#2563EB"
+format = "[](fg:#1E40AF bg:#2563EB)[ $symbol$version ]($style)"
+
+[golang]
+symbol = " "
+style = "fg:#F8FAFC bg:#2563EB"
+format = "[](fg:#1E40AF bg:#2563EB)[ $symbol$version ]($style)"
+
+[php]
+symbol = " "
+style = "fg:#F8FAFC bg:#2563EB"
+format = "[](fg:#1E40AF bg:#2563EB)[ $symbol$version ]($style)"
+
+[julia]
+symbol = " "
+style = "fg:#F8FAFC bg:#2563EB"
+format = "[](fg:#1E40AF bg:#2563EB)[ $symbol$version ]($style)"
+disabled = false
+
+[package]
+symbol = " "
+style = "fg:#DBEAFE bg:#2563EB"
+format = "[](fg:#1E40AF bg:#2563EB)[ $symbol$version ]($style)"
+display_private = false
+
+[docker_context]
+symbol = " "
+style = "fg:#F8FAFC bg:#2563EB"
+format = "[](fg:#1E40AF bg:#2563EB)[ $symbol$context ]($style)"
+only_with_files = true
+
+[nix_shell]
+symbol = " "
+style = "fg:#F8FAFC bg:#2563EB"
+format = "[](fg:#1E40AF bg:#2563EB)[ $symbol$state( \\($name\\)) ]($style)"
+
+# Duration + clock: dark blue fill + near-white text (readable on light & dark UI).
+[cmd_duration]
+min_time = 2_000
+show_milliseconds = false
+style = "fg:#F8FAFC bg:#1E40AF"
+format = "[](fg:#2563EB bg:#1E40AF)[  $duration ]($style)"
+
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "fg:#F8FAFC bg:#1E3A8A"
+format = "[](fg:#1E40AF bg:#1E3A8A)[  $time ]($style)[](fg:#1E3A8A)"
+use_12hr = false
+
+# Second line — drawn on the terminal background, so mid-tone colors only.
+[status]
+disabled = false
+style = "bold fg:#DC2626"
+symbol = " "
+success_symbol = ""
+not_found_symbol = "󰍉 "
+signal_symbol = "󰚙 "
+format = "[$symbol$common_meaning$signal_name$maybe_int]($style) "
+map_symbol = true
+recognize_signal_code = true
+pipestatus = true
+
+[jobs]
+symbol = "󰫺 "
+style = "bold fg:#D97706"
+number_threshold = 1
+format = "[$symbol$number]($style) "
+
+[character]
+# #2563EB ≈ blue-600: AA on light terminals, clearer on dark ones than blue-700.
+success_symbol = "[❯](bold fg:#2563EB)"
+error_symbol = "[❯](bold fg:#DC2626)"
+vimcmd_symbol = "[❮](bold fg:#7C3AED)"
+
+[git_metrics]
+disabled = true
+
+[memory_usage]
+disabled = true
+
+[battery]
+disabled = true

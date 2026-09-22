@@ -1,0 +1,2 @@
+# per-machine files live in ~/.claude, not here
+*.bak.*
