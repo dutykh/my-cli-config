@@ -1,23 +1,23 @@
 # my-cli-config
 
-> Personal, machine-independent CLI configuration — a polished [Claude Code](https://code.claude.com)
+> Personal, machine-independent CLI configuration: a polished [Claude Code](https://code.claude.com)
 > status line and a [Starship](https://starship.rs) prompt, installed by symlink so every machine
 > stays in sync with a `git pull`.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Shell: bash ≥ 4.3](https://img.shields.io/badge/shell-bash%20%E2%89%A5%204.3-4EAA25.svg)](https://www.gnu.org/software/bash/)
+[![Shell: bash 4.3 or later](https://img.shields.io/badge/shell-bash%204.3%2B-4EAA25.svg)](https://www.gnu.org/software/bash/)
 [![Platform: Linux | macOS](https://img.shields.io/badge/platform-Linux%20%7C%20macOS-lightgrey.svg)](#requirements)
 
 ## Preview
 
-**Claude Code status line** — identity, telemetry, system:
+**Claude Code status line**: identity, telemetry, system.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/claude-statusline-dark.png">
   <img alt="Claude Code status line: three lines showing model, path, git branch, open PR and toolchain; context, cache, cost and rate-limit gauges; and system load, host and clock" src="docs/claude-statusline-light.png">
 </picture>
 
-**Starship prompt** — blue powerline, readable on light and dark terminals:
+**Starship prompt**: blue powerline, readable on light and dark terminals.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/starship-prompt-dark.png">
@@ -31,7 +31,7 @@ git clone https://github.com/dutykh/my-cli-config.git ~/workspace/my-cli-config
 ~/workspace/my-cli-config/install.sh
 ```
 
-Clone it wherever you like — nothing hardcodes `~/workspace`. Each installer resolves its own
+Clone it wherever you like: nothing hardcodes `~/workspace`. Each installer resolves its own
 location from `${BASH_SOURCE[0]}`, so `~/dotfiles`, `~/src/my-cli-config` or anywhere else works
 just as well. Re-running the installer is always safe.
 
@@ -55,8 +55,8 @@ README; the root `install.sh` simply runs them all.
 ## How it works
 
 Everything is installed by **symlink**, never by copy. `~/.claude/statusline-command.sh` and
-`~/.config/starship.toml` point back into your clone, so updating every machine is one `git pull` —
-no re-running the installer, no drift between machines.
+`~/.config/starship.toml` point back into your clone, so updating every machine is one `git pull`,
+with no re-running of the installer and no drift between machines.
 
 Three guarantees make re-running safe:
 
@@ -82,8 +82,8 @@ clone then keeps it up to date.
 
 | component | required | optional |
 |---|---|---|
-| `claude/` | `bash ≥ 4.3`, `git`, [`jq`](https://jqlang.github.io/jq/) | a [Nerd Font](https://www.nerdfonts.com/) selected in the terminal; `timeout` / `gtimeout` for the git-status guard |
-| `starship/` | [`starship`](https://starship.rs) on `PATH` | a Nerd Font (strongly recommended — the theme is built from Nerd Font glyphs) |
+| `claude/` | `bash` 4.3 or later, `git`, [`jq`](https://jqlang.github.io/jq/) | a [Nerd Font](https://www.nerdfonts.com/) selected in the terminal; `timeout` / `gtimeout` for the git-status guard |
+| `starship/` | [`starship`](https://starship.rs) on `PATH` | a Nerd Font (strongly recommended, since the theme is built from Nerd Font glyphs) |
 
 Linux and macOS are both supported. Without a Nerd Font, icons fall back to emoji automatically;
 without `/proc` (macOS) the system line shows load only. Each installer checks its own requirements
@@ -98,7 +98,7 @@ Nothing is installed outside `~/.claude/` and `~/.config/`, so removal is two co
 rm ~/.claude/statusline-command.sh                  # the symlink
 jq 'del(.statusLine)' ~/.claude/settings.json > ~/.claude/settings.tmp \
   && mv ~/.claude/settings.tmp ~/.claude/settings.json
-rm ~/.claude/statusline.conf                        # optional — your per-machine knobs
+rm ~/.claude/statusline.conf                        # optional: your per-machine knobs
 
 # Starship prompt
 rm ~/.config/starship.toml                          # the symlink
@@ -109,7 +109,7 @@ To go back to a pre-existing config instead, restore the backup the installer ke
 
 ## Make it yours
 
-The colours, icons and choice of segments are one person's taste — you are very welcome to disagree
+The colours, icons and choice of segments are one person's taste, and you are very welcome to disagree
 with them. Two levels of customisation are supported:
 
 * **Knobs, no forking.** `~/.claude/statusline.conf` turns segments on and off and sets the icon mode,
@@ -118,22 +118,22 @@ with them. Two levels of customisation are supported:
   `bash ~/.claude/statusline-command.sh --demo`.
 * **Fork and re-theme.** For a different palette or layout, fork the repo and edit
   `claude/statusline-command.sh` / `starship/starship.toml` directly. That is the expected way to make
-  it your own — see [CONTRIBUTING.md](CONTRIBUTING.md) for what belongs upstream and what belongs in
+  it your own; [CONTRIBUTING.md](CONTRIBUTING.md) says what belongs upstream and what belongs in
   a fork.
 
 ## Contributing
 
-Bug fixes, portability patches and documentation improvements are welcome — see
-[CONTRIBUTING.md](CONTRIBUTING.md). Theme preferences are best kept in a fork.
+Bug fixes, portability patches and documentation improvements are welcome (see
+[CONTRIBUTING.md](CONTRIBUTING.md)). Theme preferences are best kept in a fork.
 
 ## Author
 
 **Dr. Denys Dutykh**
 Mathematics Department, Khalifa University, Abu Dhabi, UAE
 
-* Homepage — <https://www.denys-dutykh.com/>
-* GitHub — [@dutykh](https://github.com/dutykh)
-* ORCID — [0000-0001-5247-2788](https://orcid.org/0000-0001-5247-2788)
+* Homepage: <https://www.denys-dutykh.com/>
+* GitHub: [@dutykh](https://github.com/dutykh)
+* ORCID: [0000-0001-5247-2788](https://orcid.org/0000-0001-5247-2788)
 
 ## License
 
