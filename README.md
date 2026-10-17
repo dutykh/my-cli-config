@@ -68,6 +68,16 @@ Three guarantees make re-running safe:
 * **Your shell rc files are never edited.** If Starship is not yet active, the installer *prints* the
   one line to add and leaves the decision to you.
 
+## Alongside a private configuration
+
+The `claude/` component sets a single key of `~/.claude/settings.json`, `statusLine`, and links a
+single script. It never touches `CLAUDE.md`, rules, skills, hooks or permissions. Personal Claude
+Code instructions are best kept out of a public repository: keep them in a private repository of
+your own, with an installer that links them into `~/.claude` in the same way. The two installers
+change different parts of the settings file, so they run in any order, and a new machine is set up
+by cloning both repositories and running both installers. On every machine, `git pull` in each
+clone then keeps it up to date.
+
 ## Requirements
 
 | component | required | optional |

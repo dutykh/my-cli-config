@@ -28,6 +28,8 @@ git clone https://github.com/dutykh/my-cli-config.git ~/workspace/my-cli-config
 
 The installer symlinks the script into `~/.claude/`, seeds `~/.claude/statusline.conf` if absent, and sets
 `statusLine` in `~/.claude/settings.json` (a timestamped backup is kept). Update with `git pull`.
+Since it changes nothing else in `settings.json`, it can run before or after an installer that
+links your own instructions, rules, skills or hooks into `~/.claude`.
 
 Requirements: `bash ≥ 4.3`, `jq`, `git`. Optional: a Nerd Font, selected as the terminal font.
 
