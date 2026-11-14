@@ -1,0 +1,30 @@
+# Dr. Denys Dutykh (Mathematics Department, Khalifa University of Science and Technology, Abu Dhabi, UAE)
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "my-cli-config: a Claude Code status line and a Starship prompt, installed by symlink"
+type: software
+authors:
+  - family-names: Dutykh
+    given-names: Denys
+    affiliation: "Khalifa University of Science and Technology"
+    orcid: "https://orcid.org/0000-0001-5247-2788"
+repository-code: "https://github.com/dutykh/my-cli-config"
+license: MIT
+version: 0.1.0
+date-released: "2026-11-15"
+keywords:
+  - claude-code
+  - statusline
+  - starship
+  - dotfiles
+  - nerd-fonts
+  - terminal
+  - bash
+  - cli
+abstract: >-
+  Machine-independent terminal configuration: a three-line status line for Claude Code (model,
+  path, git state, pull request and toolchain; context, prompt cache, cost and rate-limit gauges;
+  system load, host and clock), with Nerd Font, emoji or Unicode icons, a colour-blind-safe palette
+  and a layout that follows the width of the terminal, and a two-line blue powerline prompt for
+  Starship that stays readable on light and dark terminals. Installers link both into place, so that
+  a git pull updates every machine, and never overwrite a per-machine file or edit a shell rc file.

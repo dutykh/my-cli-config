@@ -25,6 +25,14 @@ Run it after changing `starship/starship.toml` or the status line's appearance, 
 updated PNGs. It needs `python3` with Pillow and fontTools, a Nerd Font, `starship` and `jq`;
 `optipng` is used to shrink the output if present.
 
+The pictures are public, so they show a neutral user on a neutral machine, `you@laptop`, whoever
+runs the script: both components run with a temporary home that holds a clean clone at
+`~/workspace/my-cli-config` (the folder that the status line's demo shows) and a throwaway Python
+environment named `demo`, without SSH variables, and the user name of the prompt goes through an
+alias of Starship's `username` module. The font, JetBrainsMono Nerd Font Mono, is found through
+fontconfig by the names of its files; the variables `ANSI2PNG_FONT` and `ANSI2PNG_BOLD` point
+`ansi2png.py` at other files.
+
 | file | what it renders |
 |---|---|
 | `ansi2png.py` | ANSI (truecolor / 256-colour / bold / dim) → PNG, drawing each cell so powerline separators tile without seams |

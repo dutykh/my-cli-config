@@ -36,10 +36,10 @@ mkdir -p "$STATE_DIR" 2>/dev/null
 demo_json() {
 cat <<'JSON'
 {"session_id":"demo","session_name":"Claude status line","model":{"id":"claude-fable-5-1","display_name":"Fable 5.1"},
- "workspace":{"current_dir":"/home/dds/workspace/CVDutykh","project_dir":"/home/dds/workspace/CVDutykh",
- "repo":{"host":"github.com","owner":"dutykh","name":"CVDutykh"}},
+ "workspace":{"current_dir":"DEMO_DIR","project_dir":"DEMO_DIR",
+ "repo":{"host":"github.com","owner":"dutykh","name":"my-cli-config"}},
  "version":"2.1.278","effort":{"level":"xhigh"},"thinking":{"enabled":true},"fast_mode":false,
- "pr":{"number":42,"url":"https://github.com/dutykh/CVDutykh/pull/42","review_state":"approved"},
+ "pr":{"number":42,"url":"https://github.com/dutykh/my-cli-config/pull/42","review_state":"approved"},
  "cost":{"total_cost_usd":2.7534,"total_duration_ms":246994,"total_api_duration_ms":345207,"total_lines_added":86,"total_lines_removed":1},
  "context_window":{"context_window_size":1000000,"used_percentage":10,
    "current_usage":{"input_tokens":32,"output_tokens":2,"cache_creation_input_tokens":1481,"cache_read_input_tokens":101675}},
@@ -51,7 +51,8 @@ if [[ "${1:-}" == "--demo" ]]; then
   [[ -n "${2:-}" ]] && ICONS=$2
   [[ -n "${3:-}" ]] && COLUMNS=$3
   printf -v _now '%(%s)T' -1
-  input=$(demo_json | sed "s/EXP/$((_now+3500))/; s/R5/$((_now+14000))/; s/R7/$((_now+190000))/")
+  # The demo shows the clone of this repository at ~/workspace/my-cli-config, with its git status.
+  input=$(demo_json | sed "s/EXP/$((_now+3500))/; s/R5/$((_now+14000))/; s/R7/$((_now+190000))/; s|DEMO_DIR|$HOME/workspace/my-cli-config|g")
 else
   input=$(cat)
 fi

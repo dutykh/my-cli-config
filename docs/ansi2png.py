@@ -1,14 +1,36 @@
 #!/usr/bin/env python3
+# Author : Dr. Denys Dutykh (Mathematics Department, Khalifa University of Science and Technology, Abu Dhabi, UAE)
+# License: MIT, see LICENSE at the repository root
 """Render ANSI-coloured terminal output to PNG using a real Nerd Font.
 
 Parses SGR sequences (truecolor fg/bg, 256-colour, bold, dim, reset) and draws
 each cell as a background rect + glyph, so powerline separators tile seamlessly.
+
+The two faces of JetBrainsMono Nerd Font Mono are found by their file names among
+the fonts that fontconfig knows; ANSI2PNG_FONT and ANSI2PNG_BOLD give other files.
 """
-import re, sys
+import os, re, subprocess, sys
 from PIL import Image, ImageDraw, ImageFont
 
-FONT = "/home/dds/.local/share/fonts/JetBrainsMonoNerdFontMono-Regular.ttf"
-BOLD = "/home/dds/.local/share/fonts/JetBrainsMonoNerdFontMono-Bold.ttf"
+FONT_NAME = "JetBrainsMonoNerdFontMono-Regular.ttf"
+BOLD_NAME = "JetBrainsMonoNerdFontMono-Bold.ttf"
+
+
+def font_file(name, env):
+    """Path of the font file `name`: $env when set, else the copy fontconfig lists."""
+    if os.environ.get(env):
+        return os.environ[env]
+    try:
+        listed = subprocess.run(["fc-list", "-f", "%{file}\n"], capture_output=True,
+                                text=True, check=True).stdout.splitlines()
+    except (OSError, subprocess.CalledProcessError):
+        listed = []
+    for path in sorted(listed):
+        if os.path.basename(path) == name:
+            return path
+    sys.exit(f"ansi2png: {name} not found; install JetBrainsMono Nerd Font or set {env}")
+
+
 # fontconfig falls back to DejaVu for the few codepoints no Nerd Font variant
 # carries (e.g. U+21BB ↻). Mirror that here so the image matches a real terminal.
 FALLBACK = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
@@ -94,13 +116,14 @@ def render(text, out, theme="dark"):
         default_fg, page_bg = (36, 41, 47), (255, 255, 255)      # GitHub light canvas
 
     rows = parse(text, default_fg, page_bg)
-    font  = ImageFont.truetype(FONT, SIZE)
-    fontb = ImageFont.truetype(BOLD, SIZE)
+    regular = font_file(FONT_NAME, "ANSI2PNG_FONT")
+    font  = ImageFont.truetype(regular, SIZE)
+    fontb = ImageFont.truetype(font_file(BOLD_NAME, "ANSI2PNG_BOLD"), SIZE)
     try:
         fallback = ImageFont.truetype(FALLBACK, SIZE)
         from fontTools.ttLib import TTFont as _TT
         _cm = set()
-        for _t in _TT(FONT)['cmap'].tables: _cm |= set(_t.cmap.keys())
+        for _t in _TT(regular)['cmap'].tables: _cm |= set(_t.cmap.keys())
     except Exception:
         fallback, _cm = None, None
 

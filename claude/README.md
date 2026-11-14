@@ -13,11 +13,11 @@ A three-line, colour-blind-safe, responsive status line for [Claude Code](https:
 | 2 telemetry | context gauge (input-only formula, matches Claude's own %) │ prompt-cache warm/cold, hit ratio, time to expiry │ session cost, wall time, lines ± │ 5-hour / 7-day / spend-limit gauges with reset times |
 | 3 system    | load / memory / cpu since last refresh / battery ┃ user@host · Claude version · thinking / fast / vim / agent ┃ session name ┃ clock |
 
-* **Icons** – Nerd Font glyphs when a Nerd Font is installed, emoji otherwise, plain Unicode on request.
-* **Theme** – follows the Claude Code theme (`light*` / `dark*`) read from `settings.json` or `~/.claude.json`, then the terminal's `COLORFGBG` hint. Colours are the Okabe–Ito colour-blind-safe palette.
-* **Responsive** – reads the `COLUMNS` Claude Code passes and drops segments on narrow terminals.
-* **Fast** – one `jq` call, git status cached for a few seconds per session, `/proc` reads; ≈ 20 ms per refresh.
-* **Portable** – Linux and macOS (no `/proc` → load only), GNU or BSD `stat`, optional `timeout`.
+* **Icons**: Nerd Font glyphs when a Nerd Font is installed, emoji otherwise, plain Unicode on request.
+* **Theme**: follows the Claude Code theme (`light*` / `dark*`) read from `settings.json` or `~/.claude.json`, then the terminal's `COLORFGBG` hint. Colours are the Okabe–Ito colour-blind-safe palette.
+* **Responsive**: reads the `COLUMNS` Claude Code passes and drops segments on narrow terminals.
+* **Fast**: one `jq` call, git status cached for a few seconds per session, `/proc` reads; ≈ 20 ms per refresh.
+* **Portable**: Linux and macOS (no `/proc` → load only), GNU or BSD `stat`, optional `timeout`.
 
 ## Install on a machine
 
@@ -31,11 +31,11 @@ The installer symlinks the script into `~/.claude/`, seeds `~/.claude/statusline
 Since it changes nothing else in `settings.json`, it can run before or after an installer that
 links your own instructions, rules, skills or hooks into `~/.claude`.
 
-Requirements: `bash ≥ 4.3`, `jq`, `git`. Optional: a Nerd Font, selected as the terminal font.
+Requirements: `bash` 4.3 or later, `jq`, `git`. Optional: a Nerd Font, selected as the terminal font.
 
 ## Configure
 
-Edit `~/.claude/statusline.conf` (per machine, not tracked) — icon mode, theme, number of lines, which segments
+Edit `~/.claude/statusline.conf` (per machine, not tracked): icon mode, theme, number of lines, which segments
 to show, gauge widths, git cache time. Preview instantly:
 
 ```bash
@@ -43,11 +43,15 @@ bash ~/.claude/statusline-command.sh --demo            # auto icons
 bash ~/.claude/statusline-command.sh --demo unicode 90 # icon mode + simulated width
 ```
 
+The demo feeds the script a sample session whose folder is the clone at `~/workspace/my-cli-config`,
+so its path segment reads `~/workspace/my-cli-config`, with the real git status of that clone when it
+is there; the system line is that of the machine.
+
 ## Nerd Font per terminal
 
-* **Zed** – `settings.json`: `"terminal": { "font_family": "JetBrainsMono Nerd Font" }`
-* **Warp** – Settings → Appearance → Text → Font
-* **iTerm2 / Kitty / WezTerm / GNOME Terminal** – pick the Nerd Font in the profile's font setting
+* **Zed**: `settings.json`: `"terminal": { "font_family": "JetBrainsMono Nerd Font" }`
+* **Warp**: Settings → Appearance → Text → Font
+* **iTerm2 / Kitty / WezTerm / GNOME Terminal**: pick the Nerd Font in the profile's font setting
 
 Until the terminal uses a Nerd Font, force `ICONS=emoji` in `statusline.conf`.
 
@@ -75,14 +79,14 @@ bash ~/.claude/statusline-command.sh --demo nerd 120
 rm ~/.claude/statusline-command.sh                  # the symlink
 jq 'del(.statusLine)' ~/.claude/settings.json > ~/.claude/settings.tmp \
   && mv ~/.claude/settings.tmp ~/.claude/settings.json
-rm ~/.claude/statusline.conf                        # optional — your per-machine knobs
+rm ~/.claude/statusline.conf                        # optional: your per-machine knobs
 ```
 
 Or restore the backup the installer kept: `ls ~/.claude/settings.json.bak.*`.
 
 ---
 
-**Author** — Dr. Denys Dutykh, Mathematics Department, Khalifa University, Abu Dhabi, UAE ·
+**Author**: Dr. Denys Dutykh, Mathematics Department, Khalifa University, Abu Dhabi, UAE ·
 [Homepage](https://www.denys-dutykh.com/) · [GitHub](https://github.com/dutykh) ·
 [ORCID](https://orcid.org/0000-0001-5247-2788)
-**License** — [MIT](../LICENSE) · part of [my-cli-config](https://github.com/dutykh/my-cli-config)
+**License**: [MIT](../LICENSE) · part of [my-cli-config](https://github.com/dutykh/my-cli-config)

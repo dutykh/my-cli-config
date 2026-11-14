@@ -1,3 +1,5 @@
+<!-- Author: Dr. Denys Dutykh (Mathematics Department, Khalifa University of Science and Technology, Abu Dhabi, UAE) -->
+
 # my-cli-config
 
 > Personal, machine-independent CLI configuration: a polished [Claude Code](https://code.claude.com)
@@ -125,6 +127,11 @@ with them. Two levels of customisation are supported:
 
 Bug fixes, portability patches and documentation improvements are welcome (see
 [CONTRIBUTING.md](CONTRIBUTING.md)). Theme preferences are best kept in a fork.
+
+## How to cite
+
+The file [`CITATION.cff`](CITATION.cff) describes the repository for citation, and GitHub turns it
+into a reference, in APA or BibTeX, through the "Cite this repository" button of the repository page.
 
 ## Author
 

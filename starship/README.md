@@ -1,4 +1,4 @@
-# Starship — blue powerline theme
+# Starship: blue powerline theme
 
 A two-line [Starship](https://starship.rs) prompt: blue powerline segments with Nerd Font icons,
 readable on **light and dark** terminal themes.
@@ -10,10 +10,10 @@ readable on **light and dark** terminal themes.
 
 ## Design
 
-* **Self-painted segments** — each module sets its own blue background + near-white foreground, so the bar does not depend on the terminal background colour.
-* **Dual-theme second line** — `❯` / errors / jobs use mid-tone colours that stay legible on both white and dark terminals.
-* **No empty gaps** — powerline separators live inside module formats, so disabled modules do not leave double arrows.
-* **Blue-only palette** — navy → royal → bright blue; no rainbow language colours.
+* **Self-painted segments**: each module sets its own blue background + near-white foreground, so the bar does not depend on the terminal background colour.
+* **Dual-theme second line**: `❯` / errors / jobs use mid-tone colours that stay legible on both white and dark terminals.
+* **No empty gaps**: powerline separators live inside module formats, so disabled modules do not leave double arrows.
+* **Blue-only palette**: navy → royal → bright blue; no rainbow language colours.
 
 ### Palette
 
@@ -33,8 +33,8 @@ readable on **light and dark** terminal themes.
 |---|---|---|---|
 | `` `` `` | `U+E0B6` `U+E0B0` `U+E0B4` | (format) | powerline caps / arrows |
 | `` | `U+F31B` | `os` | OS glyph (Ubuntu shown) |
-| `dds` | — | `username` | current user |
-| `@host` | — | `hostname` | only on SSH |
+| `you` | none | `username` | current user |
+| `@host` | none | `hostname` | only on SSH |
 | ` ~` / path | `U+F015` | `directory` | cwd (`` = home); substitutions e.g. `` Downloads, `󰈙` Documents |
 | `` | `U+F023` | `directory` | read-only path |
 | ` branch` | `U+F418` | `git_branch` | current branch |
@@ -43,7 +43,7 @@ readable on **light and dark** terminal themes.
 | `` | `U+F487` | `package` | package version |
 | `` | `U+F308` | `docker_context` | docker context |
 | `` | `U+F313` | `nix_shell` | nix shell |
-| ` 3s` | `U+F252` | `cmd_duration` | last command ≥ 2s |
+| ` 3s` | `U+F252` | `cmd_duration` | last command, when it took 2 s or more |
 | ` 10:33` | `U+F017` | `time` | local time `%H:%M` |
 | `❯` | `U+276F` | `character` | ready (blue = ok, red = last command failed) |
 | ` …` | `U+F00D` `U+2026` | `status` | non-zero exit detail |
@@ -85,9 +85,9 @@ starship init fish | source
 
 ### Nerd Font per terminal
 
-* **Warp** — Settings → Appearance → Text → Font
-* **Zed** — `settings.json`: `"terminal": { "font_family": "JetBrainsMono Nerd Font" }`
-* **iTerm2 / Kitty / WezTerm / GNOME Terminal** — profile font setting
+* **Warp**: Settings → Appearance → Text → Font
+* **Zed**: `settings.json`: `"terminal": { "font_family": "JetBrainsMono Nerd Font" }`
+* **iTerm2 / Kitty / WezTerm / GNOME Terminal**: profile font setting
 
 ## Preview without switching shell
 
@@ -114,7 +114,7 @@ Removing the `starship init` line from your shell rc disables the prompt entirel
 
 ---
 
-**Author** — Dr. Denys Dutykh, Mathematics Department, Khalifa University, Abu Dhabi, UAE ·
+**Author**: Dr. Denys Dutykh, Mathematics Department, Khalifa University, Abu Dhabi, UAE ·
 [Homepage](https://www.denys-dutykh.com/) · [GitHub](https://github.com/dutykh) ·
 [ORCID](https://orcid.org/0000-0001-5247-2788)
-**License** — [MIT](../LICENSE) · part of [my-cli-config](https://github.com/dutykh/my-cli-config)
+**License**: [MIT](../LICENSE) · part of [my-cli-config](https://github.com/dutykh/my-cli-config)
