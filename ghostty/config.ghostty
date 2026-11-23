@@ -1,0 +1,142 @@
+# Author : Dr. Denys Dutykh (Mathematics Department, Khalifa University of Science and Technology, Abu Dhabi, UAE)
+# License: MIT, see LICENSE at the repository root
+#
+# Ghostty: the configuration shared by every machine. install.sh links it to
+# ~/.config/ghostty/config.ghostty, so a git pull updates it. What differs on one machine (the
+# colour scheme, the size of the letters) goes to ~/.config/ghostty/local, read last.
+# A comment needs a line of its own: Ghostty reads no comment at the end of a line.
+# Every option with its documentation: ghostty +show-config --default --docs
+# The reason for each line is in README.md, one line per choice.
+
+# ── Colours ──────────────────────────────────────────────────────────────────────────────────
+# Tokyo Night, as in the Herdr window. Its light companion is tokyo-night-day; the house pair
+# okabe-ito-ink and okabe-ito-paper is the alternative. One line of the local file chooses.
+theme = tokyo-night
+
+# ── Letters ──────────────────────────────────────────────────────────────────────────────────
+# JetBrains Mono for the text (with the Nerd Font icons of the prompt), JuliaMono for Greek and
+# mathematics: the same width and the same x-height, so a formula sits in the line of text.
+font-family = JetBrainsMono Nerd Font
+font-family = JuliaMono
+font-family = Noto Color Emoji
+font-size = 13.5
+
+# JetBrains Mono has only a part of these blocks, so each goes to JuliaMono as a whole and a
+# formula is drawn in one font: Greek, polytonic Greek, superscripts and subscripts, letterlike
+# symbols, arrows and mathematical operators, further arrows and operators, and the
+# mathematical alphabets.
+font-codepoint-map = U+0370-U+03FF=JuliaMono
+font-codepoint-map = U+1F00-U+1FFF=JuliaMono
+font-codepoint-map = U+2070-U+209F=JuliaMono
+font-codepoint-map = U+2100-U+214F=JuliaMono
+font-codepoint-map = U+2190-U+22FF=JuliaMono
+font-codepoint-map = U+27C0-U+27FF=JuliaMono
+font-codepoint-map = U+2900-U+2AFF=JuliaMono
+font-codepoint-map = U+1D400-U+1D7FF=JuliaMono
+
+# No ligatures: what is typed is what is shown. The ligature of JetBrains Mono for <= draws the
+# flat sign, where mathematics here writes the slanted one.
+font-feature = -calt, -liga, -dlig
+
+# ── Window ───────────────────────────────────────────────────────────────────────────────────
+# The title bar takes its colours from the theme, carries the tabs and lies flat on the terminal.
+window-theme = ghostty
+gtk-titlebar-style = tabs
+gtk-toolbar-style = flat
+
+# Room around the text, shared evenly; a coloured row reaches the edge of the window.
+window-padding-x = 14
+window-padding-y = 10
+window-padding-balance = true
+window-padding-color = extend
+
+# A new window has 120 columns and 34 rows.
+window-width = 120
+window-height = 34
+
+# ── Splits ───────────────────────────────────────────────────────────────────────────────────
+# The split without the keyboard is veiled a little, enough to tell the two apart.
+unfocused-split-opacity = 0.85
+
+# ── Cursor and pointer ───────────────────────────────────────────────────────────────────────
+# A still cursor (a bar at the prompt, a block in a program), and a pointer that leaves while
+# one types.
+cursor-style-blink = false
+mouse-hide-while-typing = true
+
+# ── Memory, bell and notices ─────────────────────────────────────────────────────────────────
+# Scrollback of 50 MB for each terminal, taken only as it fills.
+scrollback-limit = 50000000
+
+# The bell makes no sound: it marks the tab and frames the terminal that rang.
+bell-features = no-system,no-audio,attention,title,border
+
+# A command that ran for 30 seconds or more tells the desktop when it ends, if one looks elsewhere.
+notify-on-command-finish = unfocused
+notify-on-command-finish-action = no-bell,notify
+notify-on-command-finish-after = 30s
+
+# No notice at each copy; the one after a reload of this file stays.
+app-notifications = no-clipboard-copy
+
+# ── Shell ────────────────────────────────────────────────────────────────────────────────────
+# Over ssh the remote machine is told xterm-256color, which every machine knows.
+shell-integration-features = ssh-env
+
+# ── Keys ─────────────────────────────────────────────────────────────────────────────────────
+# The keys of the Herdr window, wherever both programs have the same action. The other keys
+# are those of Ghostty: ghostty +list-keybinds
+
+# Tabs on Ctrl+digit. Alt+digit goes back to the programs: Atuin picks a line of its list with it.
+keybind = ctrl+digit_1=goto_tab:1
+keybind = ctrl+digit_2=goto_tab:2
+keybind = ctrl+digit_3=goto_tab:3
+keybind = ctrl+digit_4=goto_tab:4
+keybind = ctrl+digit_5=goto_tab:5
+keybind = ctrl+digit_6=goto_tab:6
+keybind = ctrl+digit_7=goto_tab:7
+keybind = ctrl+digit_8=goto_tab:8
+keybind = ctrl+digit_9=last_tab
+keybind = alt+1=unbind
+keybind = alt+2=unbind
+keybind = alt+3=unbind
+keybind = alt+4=unbind
+keybind = alt+5=unbind
+keybind = alt+6=unbind
+keybind = alt+7=unbind
+keybind = alt+8=unbind
+keybind = alt+9=unbind
+keybind = alt+digit_1=unbind
+keybind = alt+digit_2=unbind
+keybind = alt+digit_3=unbind
+keybind = alt+digit_4=unbind
+keybind = alt+digit_5=unbind
+keybind = alt+digit_6=unbind
+keybind = alt+digit_7=unbind
+keybind = alt+digit_8=unbind
+
+# From one split to its neighbour with Alt and an arrow, or Alt and h j k l. Ctrl+Alt+arrow, the
+# key of Ghostty, belongs to the workspaces of GNOME. Without a neighbour the key goes to the program.
+keybind = performable:alt+arrow_left=goto_split:left
+keybind = performable:alt+arrow_right=goto_split:right
+keybind = performable:alt+arrow_up=goto_split:up
+keybind = performable:alt+arrow_down=goto_split:down
+keybind = performable:alt+h=goto_split:left
+keybind = performable:alt+l=goto_split:right
+keybind = performable:alt+k=goto_split:up
+keybind = performable:alt+j=goto_split:down
+
+# Close a split, and give one split the whole tab and back.
+keybind = ctrl+shift+x=close_surface
+keybind = ctrl+shift+z=toggle_split_zoom
+
+# The whole screen on F11, the usual key of the desktop; Ctrl+Enter goes back to the programs.
+keybind = f11=toggle_fullscreen
+keybind = ctrl+enter=unbind
+
+# Ctrl+Backspace deletes the word before the cursor.
+keybind = ctrl+backspace=text:\x17
+
+# ── This machine ─────────────────────────────────────────────────────────────────────────────
+# Its own settings, beside this file in ~/.config/ghostty. No error when the file is absent.
+config-file = ?local

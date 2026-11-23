@@ -1,0 +1,45 @@
+# Author : Dr. Denys Dutykh (Mathematics Department, Khalifa University of Science and Technology, Abu Dhabi, UAE)
+# License: MIT, see LICENSE at the repository root
+#
+# tokyo-night: the Tokyo Night colours (the variant Storm), for Ghostty, in the values of the
+# theme tokyo-night of the Herdr window, so that both terminals look alike. Tokyo Night is the
+# colour scheme of enkia (MIT), brought to terminals by folke/tokyonight.nvim (Apache-2.0).
+#
+# One colour differs from the scheme. Colour 8, the dim text of many programs, is #414868
+# there, a contrast of 1.6 on the background: too faint to read. Here it is #687193, the same
+# hue made lighter, which reads at 3.0. A program that paints a row in colour 8 and writes on it
+# keeps 3.0 as well: the two contrasts multiply to the 9.0 of text on background, so neither can
+# rise above 3.0 without the other falling below it.
+# Its measures are printed by: docs/palette.py ghostty/themes/tokyo-night
+
+background = #24283B
+foreground = #C0CAF5
+cursor-color = #C0CAF5
+cursor-text = #24283B
+selection-background = #364A82
+selection-foreground = #C0CAF5
+
+palette = 0=#1D202F
+palette = 1=#F7768E
+palette = 2=#9ECE6A
+palette = 3=#E0AF68
+palette = 4=#7AA2F7
+palette = 5=#BB9AF7
+palette = 6=#7DCFFF
+palette = 7=#A9B1D6
+
+palette = 8=#687193
+palette = 9=#F7768E
+palette = 10=#9ECE6A
+palette = 11=#E0AF68
+palette = 12=#7AA2F7
+palette = 13=#BB9AF7
+palette = 14=#7DCFFF
+palette = 15=#C0CAF5
+
+# The frame of the window, in the darker shade of the scheme: the title bar with its tabs, the
+# line between two splits, and the veil over the split that does not have the keyboard.
+window-titlebar-background = #1F2335
+window-titlebar-foreground = #A9B1D6
+split-divider-color = #3B4261
+unfocused-split-fill = #1F2335

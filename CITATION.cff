@@ -1,7 +1,7 @@
 # Dr. Denys Dutykh (Mathematics Department, Khalifa University of Science and Technology, Abu Dhabi, UAE)
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
-title: "my-cli-config: a Claude Code status line and a Starship prompt, installed by symlink"
+title: "my-cli-config: a Claude Code status line, a Starship prompt, a Ghostty terminal and a tmux configuration, installed by symlink"
 type: software
 authors:
   - family-names: Dutykh
@@ -10,12 +10,16 @@ authors:
     orcid: "https://orcid.org/0000-0001-5247-2788"
 repository-code: "https://github.com/dutykh/my-cli-config"
 license: MIT
-version: 0.1.0
-date-released: "2026-11-15"
+version: 0.2.0
+date-released: "2026-11-24"
 keywords:
   - claude-code
   - statusline
   - starship
+  - ghostty
+  - tmux
+  - tokyo-night
+  - colour-blind-safe
   - dotfiles
   - nerd-fonts
   - terminal
@@ -25,6 +29,10 @@ abstract: >-
   Machine-independent terminal configuration: a three-line status line for Claude Code (model,
   path, git state, pull request and toolchain; context, prompt cache, cost and rate-limit gauges;
   system load, host and clock), with Nerd Font, emoji or Unicode icons, a colour-blind-safe palette
-  and a layout that follows the width of the terminal, and a two-line blue powerline prompt for
-  Starship that stays readable on light and dark terminals. Installers link both into place, so that
-  a git pull updates every machine, and never overwrite a per-machine file or edit a shell rc file.
+  and a layout that follows the width of the terminal; a two-line blue powerline prompt for
+  Starship that stays readable on light and dark terminals; a configuration of the terminal Ghostty
+  for text and mathematics, in the colours of Tokyo Night with a readable dim colour, a light
+  companion and a colour-blind-safe alternative pair, with two fonts of one width and measured
+  contrasts; and a configuration of tmux with a quiet status line. Installers link everything into
+  place, so that a git pull updates every machine, and never overwrite a per-machine file, edit a
+  shell rc file or change the default terminal.

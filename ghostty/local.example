@@ -1,0 +1,20 @@
+# Author : Dr. Denys Dutykh (Mathematics Department, Khalifa University of Science and Technology, Abu Dhabi, UAE)
+# License: MIT, see LICENSE at the repository root
+#
+# ~/.config/ghostty/local: the settings of this machine. Ghostty reads this file after the
+# shared config.ghostty, so a line here wins. install.sh writes it once and never again.
+# Remove the "# " of a line to switch it on, then reload with Ctrl+Shift+comma.
+# Check the result with: ghostty +validate-config
+
+# The colour scheme, one line. Without a line here it is Tokyo Night (tokyo-night).
+# theme = tokyo-night-day
+# theme = light:tokyo-night-day,dark:tokyo-night
+# theme = okabe-ito-ink
+# theme = okabe-ito-paper
+# theme = light:okabe-ito-paper,dark:okabe-ito-ink
+
+# The size of the letters, in points. The shared value is 13.5.
+# font-size = 12
+
+# Ligatures, which the shared file switches off: this line empties its list, and the font decides.
+# font-feature = ""

@@ -1,0 +1,44 @@
+# Author : Dr. Denys Dutykh (Mathematics Department, Khalifa University of Science and Technology, Abu Dhabi, UAE)
+# License: MIT, see LICENSE at the repository root
+#
+# tokyo-night-day: the light companion of tokyo-night, for projectors and daylight. The values
+# are those of the theme "TokyoNight Day" that ships with Ghostty. Tokyo Night is the colour
+# scheme of enkia (MIT), and the variant Day comes from folke/tokyonight.nvim (Apache-2.0).
+#
+# One colour differs from the scheme. Colour 8, the dim text of many programs, is #A1A6C5
+# there, a contrast of 1.9 on the background. Here it is #959AB9, the same hue made darker,
+# where the dim text and the text on a row painted in colour 8 both read at 2.1: the two
+# contrasts multiply to the 4.5 of text on background, so 2.1 is the most that both can have.
+# Its measures are printed by: docs/palette.py ghostty/themes/tokyo-night-day
+
+background = #E1E2E7
+foreground = #3760BF
+cursor-color = #3760BF
+cursor-text = #E1E2E7
+selection-background = #99A7DF
+selection-foreground = #3760BF
+
+palette = 0=#E9E9ED
+palette = 1=#F52A65
+palette = 2=#587539
+palette = 3=#8C6C3E
+palette = 4=#2E7DE9
+palette = 5=#9854F1
+palette = 6=#007197
+palette = 7=#6172B0
+
+palette = 8=#959AB9
+palette = 9=#F52A65
+palette = 10=#587539
+palette = 11=#8C6C3E
+palette = 12=#2E7DE9
+palette = 13=#9854F1
+palette = 14=#007197
+palette = 15=#3760BF
+
+# The frame of the window, a shade darker than the page: the title bar with its tabs, the
+# line between two splits, and the veil over the split that does not have the keyboard.
+window-titlebar-background = #D0D5E3
+window-titlebar-foreground = #3760BF
+split-divider-color = #A8AECB
+unfocused-split-fill = #D0D5E3

@@ -3,6 +3,37 @@
 All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 0.2.0 (2026-11-24)
+
+The terminal itself joins the prompt and the status line.
+
+### Added
+
+* **`ghostty/`**: a configuration for the terminal Ghostty. The colours are Tokyo Night, with its
+  dim colour 8 made readable (a contrast of 3.0 in place of 1.6), a light companion, and a house pair
+  on the hues of Okabe and Ito as the alternative; one line of a per-machine file chooses among the
+  four. JetBrains Mono draws the text and JuliaMono, of the same width, Greek and mathematics. The
+  tabs sit in the title bar, the split without the keyboard is veiled, the bell is silent, a long
+  command reports when it ends, and the keys leave Alt+digit, Ctrl+Enter and every Ctrl+letter to the
+  programs. The README gives the reason of each line.
+* **`tmux/`**: a configuration for tmux that passes full colour, links, the clipboard and modified
+  keys through to the terminal, and draws a quiet status line in the colours of the terminal.
+* **`docs/palette.py`**: measures the terminal themes: the contrast of each text colour on the
+  background, and the distance between the hues for normal vision, protanopia and deuteranopia. The
+  house pair passes every rule, and the values of Tokyo Night are printed beside it.
+* **`docs/terminal-demo.sh`**, with two more previews, `terminal-dark.png` and `terminal-light.png`:
+  a short made-up session (prompt, listing, the sixteen colours, mathematics, Cyrillic, French) in
+  the colours of the theme.
+
+### Changed
+
+* `docs/ansi2png.py` reads the colours of a Ghostty theme file, draws underlines, and uses JuliaMono
+  for mathematics in the terminal previews. The four earlier pictures come out pixel for pixel as
+  before.
+* `docs/make-previews.sh` regenerates the previews named on its command line, or all of them.
+* The installers of the two new components skip a machine that lacks the program, change nothing on a
+  second run, and never choose the default terminal: the line that does it is printed.
+
 ## 0.1.0 (2026-09-22)
 
 Initial public release.

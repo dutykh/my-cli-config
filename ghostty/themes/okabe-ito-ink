@@ -1,0 +1,42 @@
+# Author : Dr. Denys Dutykh (Mathematics Department, Khalifa University of Science and Technology, Abu Dhabi, UAE)
+# License: MIT, see LICENSE at the repository root
+#
+# okabe-ito-ink: the dark twin of the house colour pair, for Ghostty.
+# The hues are those of Okabe and Ito, which stay apart for colour-blind readers, on the ink
+# background of the Claude Code status line. Colour 0 is a surface just off the background,
+# colour 8 the dim text and colour 15 the strongest text. The checks of docs/palette.py
+# (contrast of each text colour, distance between the hues) pass on this file.
+
+background = #181C24
+foreground = #D8DEE9
+cursor-color = #56B4E9
+cursor-text = #181C24
+selection-background = #32496F
+selection-foreground = #F0F3F7
+
+# black (surface), red (vermillion), green, yellow (orange), blue, magenta (purple), cyan (sky), white
+palette = 0=#262E3A
+palette = 1=#E87025
+palette = 2=#009E73
+palette = 3=#E69F00
+palette = 4=#5893EE
+palette = 5=#CC79A7
+palette = 6=#56B4E9
+palette = 7=#BAC2CE
+
+# the bright eight: dim text, then the lighter hues, then the strongest text
+palette = 8=#5E6E87
+palette = 9=#FF965F
+palette = 10=#4FCB9E
+palette = 11=#F0E442
+palette = 12=#86BAFD
+palette = 13=#EDA0C9
+palette = 14=#98D3F2
+palette = 15=#F0F3F7
+
+# The frame of the window, a shade darker than the ink: the title bar with its tabs, the line
+# between two splits, and the veil over the split that does not have the keyboard.
+window-titlebar-background = #12151B
+window-titlebar-foreground = #BAC2CE
+split-divider-color = #3A4658
+unfocused-split-fill = #12151B
