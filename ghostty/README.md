@@ -37,7 +37,7 @@ left on purpose.
 | Regular weight | no line | Both fonts have true bold and italic faces, and in the regular weight their strokes match. |
 | Room around the text | `window-padding-x`, `-y`, `-balance` | Margins of 14 and 10 pixels, with the leftover of the grid shared between the sides. |
 | Colour to the edge | `window-padding-color = extend` | A row with a coloured background (the bar of a program, a selected line) reaches the edge of the window instead of stopping at a frame. |
-| A window of 78 by 20 | `window-width`, `window-height` | The size of a new window, in columns and rows. |
+| A window of 78 by 20 | `window-width`, `window-height` | The size of a new window, in columns and rows. On GNOME with the text of the interface scaled (`text-scaling-factor` above 1) Ghostty draws the letters at that scale but sizes the window from letters that are not scaled, so the grid comes out smaller: 62 by 14 instead of 78 by 20 at the scale 1.25. The local file of such a machine asks for more, and `fit-window.sh` finds how much (see the section on the local file). |
 | A veil on the idle split | `unfocused-split-opacity = 0.85` | The split without the keyboard loses 15 % towards the shade of the frame: enough to see which one listens, not enough to dim its text. |
 | A thin divider | `split-divider-color`, in each theme | One line, a shade off the background. |
 | A still cursor | `cursor-style-blink = false` | Nothing moves unless a program moves it. The cursor is a bar at the prompt and a block inside a program. |
@@ -187,6 +187,29 @@ differs from one machine to the next: the colour scheme, the size of the letters
 who want them. The file `local.example` shows the lines. After a change, Ctrl+Shift+comma reloads,
 and `ghostty +validate-config` checks.
 
+Ghostty reads its files when it starts, and one program serves all its windows: a Ghostty that is
+already open gives every new window, from Ctrl+Alt+T or from the dock, the settings that it read at
+its own start. The program ends with its last window, so after a change of the files, close every
+window of Ghostty and open a new one.
+
+The size of a new window needs one more word on a desktop that scales the text of the interface
+(`gsettings get org.gnome.desktop.interface text-scaling-factor` prints more than 1). Ghostty draws
+the letters at that scale but sizes the window from letters that are not scaled, so `window-width`
+and `window-height` of the shared file give a smaller grid: 62 columns by 14 rows instead of 78 by 20
+at the scale 1.25. Asking for more in the local file repairs it, but how much depends on the scale,
+on `font-size` and on the title bar, and the grid moves in uneven steps (77 columns, then 79), so the
+two numbers are measured and not computed:
+
+```bash
+~/workspace/my-cli-config/ghostty/fit-window.sh --write 78 20
+```
+
+The script opens a few windows for about three seconds each, reads the grid of every one, and writes
+the two lines that give exactly 78 columns and 20 rows into `~/.config/ghostty/local`; without
+`--write` it only prints them. Run it again after a change of `font-size` or of the scale. On a
+machine where the text is not scaled the local file needs no such lines. At the scale 1.25 a smaller
+`font-size` looks like the shared one: 10.5 is drawn like 13 points.
+
 ## The default terminal
 
 On Ubuntu, Ctrl+Alt+T starts the first terminal of a list, and a list in the home folder comes before
@@ -208,6 +231,7 @@ The other terminal stays installed and keeps its settings.
 | `themes/tokyo-night`, `themes/tokyo-night-day` | Tokyo Night and its light companion, with the readable colour 8 |
 | `themes/okabe-ito-ink`, `themes/okabe-ito-paper` | the house pair |
 | `local.example` | the first content of `~/.config/ghostty/local` |
+| `fit-window.sh` | finds the window size to ask for on a machine whose text is scaled |
 | `install.sh` | links, seeds, validates, hints |
 
 ## Uninstall
