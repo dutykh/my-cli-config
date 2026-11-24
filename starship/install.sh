@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Install / update the Starship blue powerline theme on this machine.
+# Install / update the Starship prompt (Tokyo Night Moon pills) on this machine.
 #   git clone https://github.com/dutykh/my-cli-config.git ~/workspace/my-cli-config && ~/workspace/my-cli-config/install.sh
 # Re-running is safe. Updating later is just `git pull` (the config is symlinked, not copied).
 # Author : Dr. Denys Dutykh — Khalifa University, Abu Dhabi, UAE  <https://www.denys-dutykh.com/>

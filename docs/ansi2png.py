@@ -212,6 +212,24 @@ def render(text, out, theme="dark", theme_file=None):
     img = Image.new("RGB", (width, height), page_bg)
     d = ImageDraw.Draw(img)
 
+    # The powerline arrows and round caps are drawn as shapes that fill the whole cell, as terminals draw
+    # them, because the glyphs of the font cover only the font's height and the rows are taller. The shape
+    # is drawn four times larger on a mask and reduced, so that its edge is smooth.
+    def powerline(cp, x0, top, colour):
+        left, right = int(round(x0)), int(round(x0 + cw))
+        w, h, k = max(1, right - left), int(lh), 4
+        mask = Image.new("L", (w * k, h * k), 0)
+        m = ImageDraw.Draw(mask)
+        if cp == 0xE0B0:
+            m.polygon([(0, 0), (w * k, h * k / 2), (0, h * k)], fill=255)
+        elif cp == 0xE0B2:
+            m.polygon([(w * k, 0), (0, h * k / 2), (w * k, h * k)], fill=255)
+        elif cp == 0xE0B4:
+            m.pieslice([-w * k, 0, w * k, h * k - 1], -90, 90, fill=255)
+        elif cp == 0xE0B6:
+            m.pieslice([0, 0, 2 * w * k, h * k - 1], 90, 270, fill=255)
+        img.paste(Image.new("RGB", (w, h), colour), (left, int(top)), mask.resize((w, h), Image.LANCZOS))
+
     for y, row in enumerate(rows):
         top = PAD + y*lh
         base = top + (lh - asc - desc)/2 + asc      # one baseline for every font of the row
@@ -225,6 +243,9 @@ def render(text, out, theme="dark", theme_file=None):
                 d.rectangle([PAD + x*cw, base + SIZE*0.12, PAD + (x+1)*cw, base + SIZE*0.12 + max(2, SIZE//17)],
                             fill=cell.fg)
             if cell.ch == ' ': continue
+            if ord(cell.ch) in (0xE0B0, 0xE0B2, 0xE0B4, 0xE0B6):
+                powerline(ord(cell.ch), PAD + x*cw, top, cell.fg)
+                continue
             fnt = pick(cell)
             if fnt is fallback:
                 # centre a fallback glyph in its cell (it may not share the mono advance)

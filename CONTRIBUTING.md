@@ -12,7 +12,7 @@ people, so it helps to be clear about what fits upstream and what belongs in you
 
 ## What belongs in a fork
 
-**Theme and palette preferences are not bugs.** The Okabe–Ito colours, the blue powerline, the icon
+**Theme and palette preferences are not bugs.** The Okabe–Ito colours, the Tokyo Night Moon pills, the icon
 choices, the segment layout, and the colours, fonts and keys of the terminal are deliberate. If you
 want different colours or a different layout, fork the repo and edit `claude/statusline-command.sh`,
 `starship/starship.toml` or `ghostty/config.ghostty`; that is the intended way to make it yours, and

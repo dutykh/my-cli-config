@@ -20,11 +20,11 @@
   <img alt="Claude Code status line: three lines showing model, path, git branch, open PR and toolchain; context, cache, cost and rate-limit gauges; and system load, host and clock" src="docs/claude-statusline-light.png">
 </picture>
 
-**Starship prompt**: blue powerline, readable on light and dark terminals.
+**Starship prompt**: short Tokyo Night Moon pills, readable on light and dark terminals.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/starship-prompt-dark.png">
-  <img alt="Starship prompt: a blue powerline bar with user, path, git branch, Python version, command duration and clock, above a chevron input line" src="docs/starship-prompt-light.png">
+  <img alt="Starship prompt: Tokyo Night Moon pills with OS glyph, folder, git branch, Python version and command duration, above a chevron input line" src="docs/starship-prompt-light.png">
 </picture>
 
 **Ghostty terminal**: Tokyo Night, JetBrains Mono, and JuliaMono for the mathematics.
@@ -65,7 +65,7 @@ README; the root `install.sh` simply runs them all.
 | component | what it configures |
 |---|---|
 | [`claude/`](claude/README.md) | Claude Code status line (3 lines, Nerd Font / emoji icons, light-dark aware, colour-blind-safe) |
-| [`starship/`](starship/README.md) | Starship blue powerline prompt (Nerd Font icons, light-dark readable) |
+| [`starship/`](starship/README.md) | Starship prompt in Tokyo Night Moon pills (Nerd Font icons, light-dark readable) |
 | [`ghostty/`](ghostty/README.md) | Ghostty terminal: Tokyo Night with a light companion, a colour-blind-safe house pair, two fonts of one width for text and mathematics, tabs in the title bar, keys that leave the programs their own |
 | [`tmux/`](tmux/README.md) | tmux: what a modern terminal can do, and a quiet status line in the colours of the terminal |
 

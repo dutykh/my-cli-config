@@ -3,6 +3,19 @@
 All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## Unreleased
+
+### Changed
+
+* **`starship/`**: the prompt is shorter and wears Tokyo Night Moon. Each segment is a pill with its
+  own rounded caps, so the line ends cleanly whichever segments are present. The folder shows only its
+  own name (the repository name at its root), the user name appears only over SSH or for another user,
+  and the clock is off. Text contrast on every pill is 5.4 or more, and the marks of the second line
+  keep 3.0 on both the Moon and the Day background.
+* `docs/ansi2png.py` draws the powerline arrows and the rounded caps as shapes that fill the cell, as
+  terminals do, so the pictures show no step between a cap and its segment. `docs/make-previews.sh`
+  renders the prompt with the real login, so the pictures show no user name, as on a local machine.
+
 ## 0.2.0 (2026-11-24)
 
 The terminal itself joins the prompt and the status line.

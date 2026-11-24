@@ -1,21 +1,23 @@
-# Starship — blue powerline theme (Nerd Font icons)
-# Author : Dr. Denys Dutykh — Khalifa University, Abu Dhabi, UAE  <https://www.denys-dutykh.com/>
-# License: MIT — see LICENSE at the repository root
-# Shared via my-cli-config/starship — install with ./install.sh
+# Starship: Tokyo Night Moon pills (Nerd Font icons)
+# Author: Dr. Denys Dutykh (Mathematics Department, Khalifa University of Science and Technology, Abu Dhabi, UAE)
+# License: MIT, see LICENSE at the repository root
+# Shared via my-cli-config/starship, install with ./install.sh
 # Needs a Nerd Font (e.g. JetBrainsMono Nerd Font) in the terminal.
 #
 # Design notes
-# • Segments paint their own background, so the bar stays readable on both
-#   light and dark terminal themes.
-# • On-segment text is near-white (#F8FAFC) against navy/blue fills (high contrast).
-# • Second-line glyphs (character / status / jobs) use mid-blue / mid-red that
-#   keep acceptable contrast on white and on dark backgrounds.
-# • Separators are embedded in module formats so empty modules leave no gaps.
+# • Each segment is a pill with its own two rounded caps, so the line ends cleanly whichever
+#   segments are present, and an absent segment leaves no gap.
+# • Segments paint their own background in the Tokyo Night Moon palette, so the bar reads the
+#   same on dark and light terminal themes; text contrast on each fill is 5.4 or more.
+# • The first line is short: the OS glyph, the folder you are in (the repository name at its
+#   root), git, the toolchains, and the duration of a slow command. The user name shows only
+#   over SSH or for another user, and there is no clock (the desktop shows the time).
+# • Second-line marks (character / status / jobs) use mid-tones with contrast 3.0 or more on
+#   both the Moon (#222436) and the Day (#E1E2E7) background.
 
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[](fg:#1E3A8A)\
 $os\
 $username\
 $hostname\
@@ -44,21 +46,19 @@ add_newline = true
 command_timeout = 1000
 scan_timeout = 30
 
-# ── Blue palette ─────────────────────────────────────────────────────────────
-# bg0 #0F172A  slate-900   (deepest, reserved)
-# bg1 #1E3A8A  blue-900    os / user
-# bg2 #1D4ED8  blue-700    directory
-# bg3 #1E40AF  blue-800    git
-# bg4 #2563EB  blue-600    languages / tools
-# bg5 #1E40AF  blue-800    time / duration (darker = readable clock)
-# fg  #F8FAFC  slate-50    primary text on blue segments
-# fg2 #DBEAFE  blue-100    secondary text on blue segments
-# ink #1E3A8A  blue-900    rare dark text on lighter blue (avoided for dual-theme)
+# ── Tokyo Night Moon palette ─────────────────────────────────────────────────
+# blue     #82AAFF  OS / user pill, text #1E2030 (contrast 7.0)
+# bg_hl    #2F334D  folder, toolchains, duration: text #C8D3F5 (8.3), #86E1FC (8.3), #FFC777 (8.0)
+# blue7    #394B70  git: branch #C8D3F5 (5.8), status #FFC777 (5.7)
+# magenta  #C099FF  package version on #2F334D (5.4)
+# blue0    #3E68D7  ready mark: 3.0 on Moon, 3.9 on Day
+# red1     #C53B53  error mark and exit status: 3.0 on Moon, 3.9 on Day
+# #9854F1  jobs and vi mode (the magenta of Day): 3.6 on Moon, 3.3 on Day
 
 [os]
 disabled = false
-style = "fg:#F8FAFC bg:#1E3A8A"
-format = "[$symbol]($style)"
+style = "fg:#1E2030 bg:#82AAFF"
+format = "[](fg:#82AAFF)[ $symbol]($style)[](fg:#82AAFF) "
 
 [os.symbols]
 Ubuntu = " "
@@ -70,26 +70,26 @@ NixOS = " "
 Unknown = " "
 
 [username]
-show_always = true
+show_always = false
 disabled = false
-style_user = "fg:#F8FAFC bg:#1E3A8A"
-style_root = "fg:#FEE2E2 bg:#1E3A8A"
-format = "[$user]($style)"
+style_user = "fg:#1E2030 bg:#82AAFF"
+style_root = "bold fg:#1E2030 bg:#82AAFF"
+format = "[](fg:#82AAFF)[ $user ]($style)[](fg:#82AAFF) "
 
 [hostname]
 ssh_only = true
 disabled = false
-style = "fg:#DBEAFE bg:#1E3A8A"
-format = "[@$hostname]($style)"
+style = "fg:#1E2030 bg:#82AAFF"
+format = "[](fg:#82AAFF)[ @$hostname ]($style)[](fg:#82AAFF) "
 
 [directory]
-style = "fg:#F8FAFC bg:#1D4ED8"
-format = "[](fg:#1E3A8A bg:#1D4ED8)[ $path ]($style)[$read_only]($read_only_style)"
-truncation_length = 3
-truncation_symbol = "…/"
+style = "fg:#C8D3F5 bg:#2F334D"
+format = "[](fg:#2F334D)[ $path ]($style)[$read_only]($read_only_style)[](fg:#2F334D) "
+truncation_length = 1
+truncation_symbol = ""
 truncate_to_repo = true
 read_only = " "
-read_only_style = "fg:#FDE68A bg:#1D4ED8"
+read_only_style = "fg:#FFC777 bg:#2F334D"
 home_symbol = " ~"
 
 [directory.substitutions]
@@ -103,17 +103,18 @@ home_symbol = " ~"
 ".config" = " "
 ".local" = " "
 
-# Git sits on blue-800; leading sep assumes previous segment is directory (blue-700).
+# Git is one pill: the branch opens it and the status closes it, so that a clean tree still
+# gets its right cap (the module git_status runs in every repository).
 [git_branch]
 symbol = " "
-style = "fg:#F8FAFC bg:#1E40AF"
-format = "[](fg:#1D4ED8 bg:#1E40AF)[ $symbol$branch(:$remote_branch) ]($style)"
+style = "fg:#C8D3F5 bg:#394B70"
+format = "[](fg:#394B70)[ $symbol$branch(:$remote_branch) ]($style)"
 truncation_length = 24
 truncation_symbol = "…"
 
 [git_status]
-style = "fg:#DBEAFE bg:#1E40AF"
-format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "fg:#FFC777 bg:#394B70"
+format = '([\[$all_status$ahead_behind\] ]($style))[](fg:#394B70) '
 conflicted = "󰞇$count "
 ahead = "$count "
 behind = "$count "
@@ -127,19 +128,18 @@ renamed = "󰁕 "
 deleted = "$count "
 typechanged = "󰆾 "
 
-# Language / tool segments share blue-600. Leading sep color is a soft compromise:
-# looks fine after git (blue-800) or directory (blue-700).
+# Toolchains: one pill each, cyan text on the highlight colour of Moon.
 [nodejs]
 symbol = " "
-style = "fg:#F8FAFC bg:#2563EB"
-format = "[](fg:#1E40AF bg:#2563EB)[ $symbol$version ]($style)"
+style = "fg:#86E1FC bg:#2F334D"
+format = "[](fg:#2F334D)[ $symbol$version ]($style)[](fg:#2F334D) "
 detect_files = ["package.json", ".node-version", ".nvmrc"]
 detect_folders = ["node_modules"]
 
 [python]
 symbol = " "
-style = "fg:#F8FAFC bg:#2563EB"
-format = "[](fg:#1E40AF bg:#2563EB)[ $symbol$version( \\($virtualenv\\)) ]($style)"
+style = "fg:#86E1FC bg:#2F334D"
+format = "[](fg:#2F334D)[ $symbol$version( \\($virtualenv\\)) ]($style)[](fg:#2F334D) "
 pyenv_version_name = false
 detect_extensions = ["py"]
 detect_files = [
@@ -153,60 +153,60 @@ detect_folders = [".venv", "venv"]
 
 [rust]
 symbol = " "
-style = "fg:#F8FAFC bg:#2563EB"
-format = "[](fg:#1E40AF bg:#2563EB)[ $symbol$version ]($style)"
+style = "fg:#86E1FC bg:#2F334D"
+format = "[](fg:#2F334D)[ $symbol$version ]($style)[](fg:#2F334D) "
 
 [golang]
 symbol = " "
-style = "fg:#F8FAFC bg:#2563EB"
-format = "[](fg:#1E40AF bg:#2563EB)[ $symbol$version ]($style)"
+style = "fg:#86E1FC bg:#2F334D"
+format = "[](fg:#2F334D)[ $symbol$version ]($style)[](fg:#2F334D) "
 
 [php]
 symbol = " "
-style = "fg:#F8FAFC bg:#2563EB"
-format = "[](fg:#1E40AF bg:#2563EB)[ $symbol$version ]($style)"
+style = "fg:#86E1FC bg:#2F334D"
+format = "[](fg:#2F334D)[ $symbol$version ]($style)[](fg:#2F334D) "
 
 [julia]
 symbol = " "
-style = "fg:#F8FAFC bg:#2563EB"
-format = "[](fg:#1E40AF bg:#2563EB)[ $symbol$version ]($style)"
+style = "fg:#86E1FC bg:#2F334D"
+format = "[](fg:#2F334D)[ $symbol$version ]($style)[](fg:#2F334D) "
 disabled = false
 
 [package]
 symbol = " "
-style = "fg:#DBEAFE bg:#2563EB"
-format = "[](fg:#1E40AF bg:#2563EB)[ $symbol$version ]($style)"
+style = "fg:#C099FF bg:#2F334D"
+format = "[](fg:#2F334D)[ $symbol$version ]($style)[](fg:#2F334D) "
 display_private = false
 
 [docker_context]
 symbol = " "
-style = "fg:#F8FAFC bg:#2563EB"
-format = "[](fg:#1E40AF bg:#2563EB)[ $symbol$context ]($style)"
+style = "fg:#86E1FC bg:#2F334D"
+format = "[](fg:#2F334D)[ $symbol$context ]($style)[](fg:#2F334D) "
 only_with_files = true
 
 [nix_shell]
 symbol = " "
-style = "fg:#F8FAFC bg:#2563EB"
-format = "[](fg:#1E40AF bg:#2563EB)[ $symbol$state( \\($name\\)) ]($style)"
+style = "fg:#86E1FC bg:#2F334D"
+format = "[](fg:#2F334D)[ $symbol$state( \\($name\\)) ]($style)[](fg:#2F334D) "
 
-# Duration + clock: dark blue fill + near-white text (readable on light & dark UI).
+# Duration of a slow command; the clock is off (the desktop shows the time).
 [cmd_duration]
 min_time = 2_000
 show_milliseconds = false
-style = "fg:#F8FAFC bg:#1E40AF"
-format = "[](fg:#2563EB bg:#1E40AF)[  $duration ]($style)"
+style = "fg:#FFC777 bg:#2F334D"
+format = "[](fg:#2F334D)[  $duration ]($style)[](fg:#2F334D) "
 
 [time]
-disabled = false
+disabled = true
 time_format = "%H:%M"
-style = "fg:#F8FAFC bg:#1E3A8A"
-format = "[](fg:#1E40AF bg:#1E3A8A)[  $time ]($style)[](fg:#1E3A8A)"
+style = "fg:#C8D3F5 bg:#2F334D"
+format = "[](fg:#2F334D)[  $time ]($style)[](fg:#2F334D) "
 use_12hr = false
 
-# Second line — drawn on the terminal background, so mid-tone colors only.
+# Second line, drawn on the terminal background: mid-tones that read on dark and light themes.
 [status]
 disabled = false
-style = "bold fg:#DC2626"
+style = "bold fg:#C53B53"
 symbol = " "
 success_symbol = ""
 not_found_symbol = "󰍉 "
@@ -218,15 +218,15 @@ pipestatus = true
 
 [jobs]
 symbol = "󰫺 "
-style = "bold fg:#D97706"
+style = "bold fg:#9854F1"
 number_threshold = 1
 format = "[$symbol$number]($style) "
 
 [character]
 # #2563EB ≈ blue-600: AA on light terminals, clearer on dark ones than blue-700.
-success_symbol = "[❯](bold fg:#2563EB)"
-error_symbol = "[❯](bold fg:#DC2626)"
-vimcmd_symbol = "[❮](bold fg:#7C3AED)"
+success_symbol = "[❯](bold fg:#3E68D7)"
+error_symbol = "[❯](bold fg:#C53B53)"
+vimcmd_symbol = "[❮](bold fg:#9854F1)"
 
 [git_metrics]
 disabled = true

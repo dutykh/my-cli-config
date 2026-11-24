@@ -46,6 +46,8 @@ neutral=(env -u SSH_CONNECTION -u SSH_CLIENT -u SSH_TTY -u CONDA_DEFAULT_ENV -u 
          HOME="$demo_home" USER=you LOGNAME=you HOSTNAME=laptop XDG_RUNTIME_DIR="$tmp/run"
          VIRTUAL_ENV="$tmp/venvs/demo" PATH="$tmp/venvs/demo/bin:$PATH")
 # Starship reads the login from the system rather than from $USER: an alias shows it as "you".
+# The prompt shows the user name only over SSH or for another user, so its pictures run with the
+# real login in LOGNAME and show no name at all, as on a local machine.
 sed "/^\[username\]/a aliases = { \"$(id -un)\" = \"you\" }" \
   "$repo/starship/starship.toml" > "$tmp/starship.toml"
 
@@ -66,7 +68,7 @@ for theme in dark light; do
     # Starship prompt, rendered inside the clean clone.
     (
       cd "$demo_home/workspace/my-cli-config"
-      "${neutral[@]}" STARSHIP_CONFIG="$tmp/starship.toml" \
+      "${neutral[@]}" LOGNAME="$(id -un)" STARSHIP_CONFIG="$tmp/starship.toml" \
         starship prompt --status 0 --cmd-duration 3000
     ) > "$tmp/star.ansi"
     python3 "$here/ansi2png.py" "$here/starship-prompt-$theme.png" "$theme" < "$tmp/star.ansi"
@@ -77,7 +79,7 @@ for theme in dark light; do
     # A short session in the theme of Ghostty and its light companion, 70 columns wide, without
     # the Python environment.
     case $theme in dark) scheme=tokyo-night ;; *) scheme=tokyo-night-day ;; esac
-    "${neutral[@]}" env -u VIRTUAL_ENV STARSHIP_CONFIG="$tmp/starship.toml" \
+    "${neutral[@]}" env -u VIRTUAL_ENV LOGNAME="$(id -un)" STARSHIP_CONFIG="$tmp/starship.toml" \
       bash "$here/terminal-demo.sh" 70 > "$tmp/term.ansi" < /dev/null
     python3 "$here/ansi2png.py" "$here/terminal-$theme.png" "$theme" "$repo/ghostty/themes/$scheme" < "$tmp/term.ansi"
     written+=("$here/terminal-$theme.png")

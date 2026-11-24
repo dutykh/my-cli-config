@@ -1,39 +1,42 @@
-# Starship: blue powerline theme
+# Starship: Tokyo Night Moon pills
 
-A two-line [Starship](https://starship.rs) prompt: blue powerline segments with Nerd Font icons,
-readable on **light and dark** terminal themes.
+A two-line [Starship](https://starship.rs) prompt: short rounded pills in the Tokyo Night Moon palette,
+with Nerd Font icons, readable on **light and dark** terminal themes.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="../docs/starship-prompt-dark.png">
-  <img alt="Starship blue powerline prompt rendered with Nerd Font icons" src="../docs/starship-prompt-light.png">
+  <img alt="Starship prompt in Tokyo Night Moon pills: OS glyph, folder, git branch, Python version and command duration, above a chevron input line" src="../docs/starship-prompt-light.png">
 </picture>
 
 ## Design
 
-* **Self-painted segments**: each module sets its own blue background + near-white foreground, so the bar does not depend on the terminal background colour.
-* **Dual-theme second line**: `❯` / errors / jobs use mid-tone colours that stay legible on both white and dark terminals.
-* **No empty gaps**: powerline separators live inside module formats, so disabled modules do not leave double arrows.
-* **Blue-only palette**: navy → royal → bright blue; no rainbow language colours.
+* **Pills**: each segment is a pill with its own two rounded caps, so the line ends cleanly whichever segments are present, and an absent segment leaves no gap.
+* **A short first line**: the folder you are in (the repository name at its root), git, toolchains and the duration of a slow command. The user name shows only over SSH or for another user, and there is no clock.
+* **Self-painted segments**: each module paints its own background and text in the Moon palette, so the bar does not depend on the terminal background; text contrast on every fill is 5.4 or more.
+* **Dual-theme second line**: `❯`, errors and jobs use mid-tones with a contrast of 3.0 or more on both the Moon and the Day background.
 
 ### Palette
 
 | token | hex | role |
 |---|---|---|
-| blue-900 | `#1E3A8A` | OS / user / clock |
-| blue-700 | `#1D4ED8` | directory |
-| blue-800 | `#1E40AF` | git / duration |
-| blue-600 | `#2563EB` | languages & tools / success `❯` |
-| slate-50 | `#F8FAFC` | primary text on segments |
-| blue-100 | `#DBEAFE` | secondary text on segments |
-| red-600 | `#DC2626` | errors |
+| blue | `#82AAFF` | OS / user pill (text `#1E2030`) |
+| bg_highlight | `#2F334D` | folder, toolchains, duration |
+| blue7 | `#394B70` | git |
+| fg | `#C8D3F5` | text on the folder and git pills |
+| cyan | `#86E1FC` | toolchain versions |
+| yellow | `#FFC777` | git status, duration, read-only lock |
+| magenta | `#C099FF` | package version |
+| blue0 | `#3E68D7` | ready `❯` |
+| red1 | `#C53B53` | errors |
+| Day magenta | `#9854F1` | jobs, vi mode |
 
 ## Prompt legend
 
 | element | codepoint(s) | module | meaning |
 |---|---|---|---|
-| `` `` `` | `U+E0B6` `U+E0B0` `U+E0B4` | (format) | powerline caps / arrows |
+| `` `` | `U+E0B6` `U+E0B4` | every pill | rounded caps |
 | `` | `U+F31B` | `os` | OS glyph (Ubuntu shown) |
-| `you` | none | `username` | current user |
+| `you` | none | `username` | current user, only over SSH or for another user |
 | `@host` | none | `hostname` | only on SSH |
 | ` ~` / path | `U+F015` | `directory` | cwd (`` = home); substitutions e.g. `` Downloads, `󰈙` Documents |
 | `` | `U+F023` | `directory` | read-only path |
@@ -44,7 +47,7 @@ readable on **light and dark** terminal themes.
 | `` | `U+F308` | `docker_context` | docker context |
 | `` | `U+F313` | `nix_shell` | nix shell |
 | ` 3s` | `U+F252` | `cmd_duration` | last command, when it took 2 s or more |
-| ` 10:33` | `U+F017` | `time` | local time `%H:%M` |
+| ` 10:33` | `U+F017` | `time` | local time `%H:%M`, off (`disabled = false` in `[time]` brings it back) |
 | `❯` | `U+276F` | `character` | ready (blue = ok, red = last command failed) |
 | ` …` | `U+F00D` `U+2026` | `status` | non-zero exit detail |
 | `󰫺 N` | `U+F0AFA` | `jobs` | background job count |
