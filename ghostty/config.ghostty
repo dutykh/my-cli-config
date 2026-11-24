@@ -51,8 +51,8 @@ window-padding-balance = true
 window-padding-color = extend
 
 # A new window has 120 columns and 34 rows.
-window-width = 120
-window-height = 34
+window-width = 93
+window-height = 24
 
 # ── Splits ───────────────────────────────────────────────────────────────────────────────────
 # The split without the keyboard is veiled a little, enough to tell the two apart.
