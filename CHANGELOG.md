@@ -5,7 +5,21 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## Unreleased
 
+### Added
+
+* **`ghostty/themes/tokyo-night-moon`**: the Moon variant of Tokyo Night, now the default theme of
+  Ghostty, as on the desktop and in the prompt. Its colours are those of the Moon terminal theme of
+  Tokyo Night (the one that Ghostty ships as `TokyoNight Moon`), with colour 8 set to the Moon comment
+  colour `#636DA6`: dim text keeps a contrast of 3.1 on the background `#222436`, where the shipped
+  `#444A73` gives 1.8. The Storm theme `tokyo-night` stays, one line of the file `local` away.
+
 ### Changed
+
+* The file `ghostty/config.ghostty` chooses `tokyo-night-moon`, and `docs/palette.py` measures it
+  beside Tokyo Night and its Day companion: text 10.3, colour 8 3.1, selected text 6.8, cursor 10.3.
+  The pictures of `docs/` show the Moon theme.
+* **`tmux/`**: the session pill of the status line wears the Moon blue `#82AAFF` with the dark text
+  `#1E2030`, like the first pill of the prompt.
 
 * **`starship/`**: the prompt is shorter and wears Tokyo Night Moon. Each segment is a pill with its
   own rounded caps, so the line ends cleanly whichever segments are present. The folder shows only its
