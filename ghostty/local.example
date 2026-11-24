@@ -13,8 +13,8 @@
 # theme = okabe-ito-paper
 # theme = light:okabe-ito-paper,dark:okabe-ito-ink
 
-# The size of the letters, in points. The shared value is 13.5.
-# font-size = 12
+# The size of the letters, in points. The shared value is 12.
+# font-size = 14
 
 # Ligatures, which the shared file switches off: this line empties its list, and the font decides.
 # font-feature = ""

@@ -31,13 +31,13 @@ left on purpose.
 | Tabs in the title bar | `gtk-titlebar-style = tabs` | No second bar: a row of text is won, and one tab alone is simply the title. |
 | A flat frame | `gtk-toolbar-style = flat` | No shadow falls on the terminal: the shade of the bar is enough to tell it apart. |
 | Two fonts of one width | `font-family` | JetBrains Mono for the text and the icons of the prompt, JuliaMono for Greek and mathematics, Noto Color Emoji for the rest. The two text fonts share the width (0.6 em) and the x-height (0.55 em), so a formula sits in the line. |
-| The size of a page | `font-size = 13.5` | Letters of 18 pixels on a standard screen, large enough to read for a day. |
+| The size of a page | `font-size = 12` | Letters of 16 pixels on a standard screen. |
 | Whole blocks to JuliaMono | `font-codepoint-map` | JetBrains Mono carries a part of Greek and 119 of the 256 mathematical operators, and lacks ϑ, ϱ, ϵ, ⩽ and ⩾. Each block goes to JuliaMono as a whole, so a formula is drawn in one font. |
 | No ligatures | `font-feature = -calt, -liga, -dlig` | What is typed is what is shown. The ligature for `<=` would draw the flat sign, where mathematics here writes ⩽. |
 | Regular weight | no line | Both fonts have true bold and italic faces, and in the regular weight their strokes match. |
 | Room around the text | `window-padding-x`, `-y`, `-balance` | Margins of 14 and 10 pixels, with the leftover of the grid shared between the sides. |
 | Colour to the edge | `window-padding-color = extend` | A row with a coloured background (the bar of a program, a selected line) reaches the edge of the window instead of stopping at a frame. |
-| A window of 120 by 34 | `window-width`, `window-height` | Wide enough for two splits side by side. |
+| A window of 78 by 20 | `window-width`, `window-height` | The size of a new window, in columns and rows. |
 | A veil on the idle split | `unfocused-split-opacity = 0.85` | The split without the keyboard loses 15 % towards the shade of the frame: enough to see which one listens, not enough to dim its text. |
 | A thin divider | `split-divider-color`, in each theme | One line, a shade off the background. |
 | A still cursor | `cursor-style-blink = false` | Nothing moves unless a program moves it. The cursor is a bar at the prompt and a block inside a program. |
