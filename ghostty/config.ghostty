@@ -9,9 +9,10 @@
 # The reason for each line is in README.md, one line per choice.
 
 # ── Colours ──────────────────────────────────────────────────────────────────────────────────
-# Tokyo Night, as in the Herdr window. Its light companion is tokyo-night-day; the house pair
-# okabe-ito-ink and okabe-ito-paper is the alternative. One line of the local file chooses.
-theme = tokyo-night
+# Tokyo Night Moon, as in the Herdr window, Zed and the prompt. The variant Storm is tokyo-night and
+# the light companion tokyo-night-day; the house pair okabe-ito-ink and okabe-ito-paper is the
+# alternative. One line of the local file chooses.
+theme = tokyo-night-moon
 
 # ── Letters ──────────────────────────────────────────────────────────────────────────────────
 # JetBrains Mono for the text (with the Nerd Font icons of the prompt), JuliaMono for Greek and

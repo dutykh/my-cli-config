@@ -28,7 +28,7 @@ Font, `starship` and `jq`; `optipng` is used to shrink the output if present. Th
 are complete with `eza` and JuliaMono, and degrade without them.
 
 The terminal previews (`terminal-dark.png`, `terminal-light.png`) show a short made-up session,
-written by `terminal-demo.sh`, in the colours of `ghostty/themes/tokyo-night` and of its light
+written by `terminal-demo.sh`, in the colours of `ghostty/themes/tokyo-night-moon` and of its light
 companion: the background, the foreground and the sixteen colours are read from the theme file, and
 Greek and mathematics are drawn with JuliaMono for the blocks that `ghostty/config.ghostty` sends to
 it. They are drawings of the theme, not photographs of Ghostty: the window, the cursor and the exact

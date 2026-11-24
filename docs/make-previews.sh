@@ -17,7 +17,7 @@
 # (the latter would wrap the colours in the escapes of a bash prompt).
 #
 # The terminal previews show the made-up session of terminal-demo.sh in the theme of Ghostty,
-# tokyo-night, and in its light companion, with the colours read from the theme files.
+# tokyo-night-moon, and in its light companion, with the colours read from the theme files.
 #
 # Requires: python3 with Pillow + fontTools, a Nerd Font, starship, jq. The terminal previews
 # are complete with eza and JuliaMono, and degrade without them.
@@ -78,7 +78,7 @@ for theme in dark light; do
   if wanted terminal; then
     # A short session in the theme of Ghostty and its light companion, 70 columns wide, without
     # the Python environment.
-    case $theme in dark) scheme=tokyo-night ;; *) scheme=tokyo-night-day ;; esac
+    case $theme in dark) scheme=tokyo-night-moon ;; *) scheme=tokyo-night-day ;; esac
     "${neutral[@]}" env -u VIRTUAL_ENV LOGNAME="$(id -un)" STARSHIP_CONFIG="$tmp/starship.toml" \
       bash "$here/terminal-demo.sh" 70 > "$tmp/term.ansi" < /dev/null
     python3 "$here/ansi2png.py" "$here/terminal-$theme.png" "$theme" "$repo/ghostty/themes/$scheme" < "$tmp/term.ansi"

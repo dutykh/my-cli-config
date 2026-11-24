@@ -67,7 +67,7 @@ else
 fi
 
 echo "  local   : $cfg_dir/local   (colour scheme, size of the letters)"
-echo "  themes  : tokyo-night (default), tokyo-night-day, okabe-ito-ink, okabe-ito-paper"
+echo "  themes  : tokyo-night-moon (default), tokyo-night, tokyo-night-day, okabe-ito-ink, okabe-ito-paper"
 echo "  reload  : Ctrl+Shift+comma in a Ghostty window"
 
 has_font() {   # pipefail-safe: test captured output, not pipeline status

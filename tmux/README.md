@@ -12,7 +12,7 @@ window closes, which the terminal itself does not.
   the sixteen colours of the terminal, so tmux wears the colour scheme of the terminal, whichever it
   is, light or dark.
 * **One accent.** The name of the session sits in a pill of the blue of the
-  [Starship prompt](../starship/README.md) (`#1E3A8A` with `#F8FAFC`), the current window is written
+  [Starship prompt](../starship/README.md) (`#82AAFF` with `#1E2030`, the Moon blue of its first pill), the current window is written
   in blue, and everything else is dim.
 * **Nothing lost on the way.** Full colour, links, updates drawn in one piece, the clipboard, modified
   keys, focus and styled underlines pass through tmux to the terminal and back.

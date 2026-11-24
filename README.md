@@ -27,7 +27,7 @@
   <img alt="Starship prompt: Tokyo Night Moon pills with OS glyph, folder, git branch, Python version and command duration, above a chevron input line" src="docs/starship-prompt-light.png">
 </picture>
 
-**Ghostty terminal**: Tokyo Night, JetBrains Mono, and JuliaMono for the mathematics.
+**Ghostty terminal**: Tokyo Night Moon, JetBrains Mono, and JuliaMono for the mathematics.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/terminal-dark.png">
@@ -66,7 +66,7 @@ README; the root `install.sh` simply runs them all.
 |---|---|
 | [`claude/`](claude/README.md) | Claude Code status line (3 lines, Nerd Font / emoji icons, light-dark aware, colour-blind-safe) |
 | [`starship/`](starship/README.md) | Starship prompt in Tokyo Night Moon pills (Nerd Font icons, light-dark readable) |
-| [`ghostty/`](ghostty/README.md) | Ghostty terminal: Tokyo Night with a light companion, a colour-blind-safe house pair, two fonts of one width for text and mathematics, tabs in the title bar, keys that leave the programs their own |
+| [`ghostty/`](ghostty/README.md) | Ghostty terminal: Tokyo Night Moon, with the variant Storm and a light companion, a colour-blind-safe house pair, two fonts of one width for text and mathematics, tabs in the title bar, keys that leave the programs their own |
 | [`tmux/`](tmux/README.md) | tmux: what a modern terminal can do, and a quiet status line in the colours of the terminal |
 
 The folder [`docs/`](docs/README.md) holds the preview pictures and the tools that draw them, with
@@ -130,7 +130,7 @@ rm ~/.config/starship.toml                          # the symlink
 
 # Ghostty terminal
 rm ~/.config/ghostty/config.ghostty                 # the symlink
-rm ~/.config/ghostty/themes/tokyo-night ~/.config/ghostty/themes/tokyo-night-day
+rm ~/.config/ghostty/themes/tokyo-night-moon ~/.config/ghostty/themes/tokyo-night ~/.config/ghostty/themes/tokyo-night-day
 rm ~/.config/ghostty/themes/okabe-ito-ink ~/.config/ghostty/themes/okabe-ito-paper
 rm ~/.config/ghostty/local                          # optional: your per-machine settings
 

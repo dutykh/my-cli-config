@@ -1,0 +1,46 @@
+# Author : Dr. Denys Dutykh (Mathematics Department, Khalifa University of Science and Technology, Abu Dhabi, UAE)
+# License: MIT, see LICENSE at the repository root
+#
+# tokyo-night-moon: the Tokyo Night colours in the variant Moon, for Ghostty, in the values of the
+# Moon terminal theme of folke/tokyonight.nvim (Apache-2.0), the one that Ghostty ships as
+# TokyoNight Moon. Tokyo Night is the colour scheme of enkia (MIT). The Herdr theme of the same
+# name, which math-toolbox writes from the same palette, shares the background, the text, the
+# selection, the accent and the dim colour, so that both terminals look alike.
+#
+# One colour differs from the scheme, as in tokyo-night. Colour 8, the dim text of many programs,
+# is #444A73 there, a contrast of 1.8 on the background: too faint to read. Here it is #636DA6,
+# the comment colour of Moon, which reads at 3.1. A program that paints a row in colour 8 and
+# writes on it keeps 3.3, since the two contrasts multiply to the 10.3 of text on background.
+# Its measures are printed by: docs/palette.py ghostty/themes/tokyo-night-moon
+
+background = #222436
+foreground = #C8D3F5
+cursor-color = #C8D3F5
+cursor-text = #222436
+selection-background = #2D3F76
+selection-foreground = #C8D3F5
+
+palette = 0=#1B1D2B
+palette = 1=#FF757F
+palette = 2=#C3E88D
+palette = 3=#FFC777
+palette = 4=#82AAFF
+palette = 5=#C099FF
+palette = 6=#86E1FC
+palette = 7=#828BB8
+
+palette = 8=#636DA6
+palette = 9=#FF757F
+palette = 10=#C3E88D
+palette = 11=#FFC777
+palette = 12=#82AAFF
+palette = 13=#C099FF
+palette = 14=#86E1FC
+palette = 15=#C8D3F5
+
+# The frame of the window, in the darker shade of the scheme: the title bar with its tabs, the
+# line between two splits, and the veil over the split that does not have the keyboard.
+window-titlebar-background = #1E2030
+window-titlebar-foreground = #828BB8
+split-divider-color = #3B4261
+unfocused-split-fill = #1E2030

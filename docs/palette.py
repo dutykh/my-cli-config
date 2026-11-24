@@ -4,7 +4,7 @@
 """Measure the colours of a terminal theme: is every text colour readable, and do the hues stay
 apart for a colour-blind reader?
 
-    docs/palette.py                 the four themes of ghostty/themes
+    docs/palette.py                 the five themes of ghostty/themes
     docs/palette.py FILE ...        other Ghostty theme files, by the same rules
     docs/palette.py --markdown      the same tables as Markdown, for a README
 
@@ -16,8 +16,8 @@ ratio of WCAG 2. The distance is the Euclidean one of OKLab, times 100, after th
 through the dichromacy matrices of Machado, Oliveira and Fernandes (2009) in linear sRGB.
 
 The house pair (okabe-ito-ink, okabe-ito-paper) is built to pass every rule, and the exit status is
-1 when one of its values falls below its floor. The Tokyo Night pair keeps the hues of its scheme:
-it is measured by the same rules, its low values are marked, and they do not change the exit status.
+1 when one of its values falls below its floor. The three Tokyo Night themes (Storm, Moon and Day)
+keep the hues of their scheme: they are measured by the same rules, its low values are marked, and they do not change the exit status.
 A file named on the command line is judged like the house pair. Standard library only.
 """
 import argparse
@@ -28,7 +28,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 HOUSE = ["okabe-ito-ink", "okabe-ito-paper"]        # judged: these must pass
-MEASURED = ["tokyo-night", "tokyo-night-day"]       # measured: the hues of their scheme stay
+MEASURED = ["tokyo-night", "tokyo-night-moon", "tokyo-night-day"]   # measured: the hues of their scheme stay
 NAMES = ["black", "red", "green", "yellow", "blue", "magenta", "cyan", "white"]
 HUES = range(1, 7)
 
@@ -202,7 +202,7 @@ def main():
             failures += report(read_theme(folder / name), args.markdown, judged=True)
         noted = sum(report(read_theme(folder / name), args.markdown, judged=False) for name in MEASURED)
         if not args.markdown:
-            print(f"palette: {noted} value{'s' * (noted != 1)} of the Tokyo Night pair below a floor "
+            print(f"palette: {noted} value{'s' * (noted != 1)} of the Tokyo Night themes below a floor "
                   f"(marked low, kept as the scheme has them)")
     if failures and not args.markdown:
         print(f"palette: {failures} finding{'s' * (failures != 1)}")

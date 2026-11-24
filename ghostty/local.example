@@ -6,9 +6,10 @@
 # Remove the "# " of a line to switch it on, then reload with Ctrl+Shift+comma.
 # Check the result with: ghostty +validate-config
 
-# The colour scheme, one line. Without a line here it is Tokyo Night (tokyo-night).
+# The colour scheme, one line. Without a line here it is Tokyo Night Moon (tokyo-night-moon).
+# theme = tokyo-night
 # theme = tokyo-night-day
-# theme = light:tokyo-night-day,dark:tokyo-night
+# theme = light:tokyo-night-day,dark:tokyo-night-moon
 # theme = okabe-ito-ink
 # theme = okabe-ito-paper
 # theme = light:okabe-ito-paper,dark:okabe-ito-ink
