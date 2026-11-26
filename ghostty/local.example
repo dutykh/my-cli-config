@@ -24,12 +24,13 @@
 
 # The size of a new window, if GNOME (or another desktop) scales the text of the interface.
 # Ghostty draws the letters at that scale but sizes the window from letters that are not
-# scaled, so the grid is smaller than window-width by window-height: 62 by 14 instead of the
-# shared 78 by 20 at the scale 1.25. The two lines below ask for more. Their values depend on
+# scaled, so the grid is smaller than window-width by window-height: 76 by 14 instead of the
+# shared 95 by 20 at the scale 1.25. The two lines below ask for more. Their values depend on
 # the scale, on font-size and on the title bar, and the grid moves in uneven steps, so they
 # are measured: this command opens a few windows, reads the grid of each, and writes the lines.
-#   ~/workspace/my-cli-config/ghostty/fit-window.sh --write 78 20
+#   ~/workspace/my-cli-config/ghostty/fit-window.sh --write 95 20
 # The scale of the text: gsettings get org.gnome.desktop.interface text-scaling-factor
-# For example, at the scale 1.25 with font-size = 10.5:
-# window-width = 97
+# For example, at the scale 1.25 with font-size = 10.5, where the grid skips 95 columns and the
+# nearest width serves, 96 columns and 20 rows:
+# window-width = 120
 # window-height = 27
