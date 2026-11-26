@@ -11,8 +11,8 @@
 #
 # Why it is needed. On GNOME with the text scaled (gsettings get org.gnome.desktop.interface
 # text-scaling-factor above 1) Ghostty draws the letters at that scale but sizes a new window from
-# letters that are not scaled, so the grid comes out smaller than window-width by window-height: 76
-# by 14 for the shared 95 by 20 at the scale 1.25. The error depends on the size of the letters and
+# letters that are not scaled, so the grid comes out smaller than window-width by window-height: 77
+# by 14 for the shared 96 by 20 at the scale 1.25. The error depends on the size of the letters and
 # on the title bar, and the grid moves in uneven steps (77 columns, then 79), so the numbers are
 # measured, not computed: each trial opens a window, waits until it has settled and reads its grid
 # with stty. Run it again after every change of font-size or of the scale of the text.

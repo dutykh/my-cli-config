@@ -51,10 +51,10 @@ window-padding-y = 10
 window-padding-balance = true
 window-padding-color = extend
 
-# A new window has 95 columns and 20 rows. On GNOME, if the text of the interface is
+# A new window has 96 columns and 20 rows. On GNOME, if the text of the interface is
 # scaled (text-scaling-factor above 1), the grid comes out smaller: the local file of that
 # machine asks for more, and fit-window.sh finds how much (see README.md).
-window-width = 95
+window-width = 96
 window-height = 20
 
 # ── Splits ───────────────────────────────────────────────────────────────────────────────────
