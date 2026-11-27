@@ -37,7 +37,7 @@ left on purpose.
 | Regular weight | no line | Both fonts have true bold and italic faces, and in the regular weight their strokes match. |
 | Room around the text | `window-padding-x`, `-y`, `-balance` | Margins of 14 and 10 pixels, with the leftover of the grid shared between the sides. |
 | Colour to the edge | `window-padding-color = extend` | A row with a coloured background (the bar of a program, a selected line) reaches the edge of the window instead of stopping at a frame. |
-| A window of 96 by 20 | `window-width`, `window-height` | The size of a new window, in columns and rows. On GNOME with the text of the interface scaled (`text-scaling-factor` above 1) Ghostty draws the letters at that scale but sizes the window from letters that are not scaled, so the grid comes out smaller: 77 by 14 instead of 96 by 20 at the scale 1.25. The local file of such a machine asks for more, and `fit-window.sh` finds how much (see the section on the local file). |
+| A window of 96 by 25 | `window-width`, `window-height` | The size of a new window, in columns and rows. On GNOME with the text of the interface scaled (`text-scaling-factor` above 1) Ghostty draws the letters at that scale but sizes the window from letters that are not scaled, so the grid comes out smaller: 77 columns instead of 96 at the scale 1.25. The local file of such a machine asks for more, and `fit-window.sh` finds how much (see the section on the local file). |
 | A veil on the idle split | `unfocused-split-opacity = 0.85` | The split without the keyboard loses 15 % towards the shade of the frame: enough to see which one listens, not enough to dim its text. |
 | A thin divider | `split-divider-color`, in each theme | One line, a shade off the background. |
 | A still cursor | `cursor-style-blink = false` | Nothing moves unless a program moves it. The cursor is a bar at the prompt and a block inside a program. |
@@ -198,18 +198,20 @@ window of Ghostty and open a new one.
 The size of a new window needs one more word on a desktop that scales the text of the interface
 (`gsettings get org.gnome.desktop.interface text-scaling-factor` prints more than 1). Ghostty draws
 the letters at that scale but sizes the window from letters that are not scaled, so `window-width`
-and `window-height` of the shared file give a smaller grid: 77 columns by 14 rows instead of 96 by 20
-at the scale 1.25. Asking for more in the local file repairs it, but how much depends on the scale,
-on `font-size` and on the title bar, and the grid moves in uneven steps (77 columns, then 79), so the
-two numbers are measured and not computed:
+and `window-height` of the shared file give a smaller grid: 77 columns instead of 96 at the scale
+1.25, and fewer rows than asked. Asking for more in the local file repairs it, but how much depends
+on the scale, on `font-size` and on the title bar, and the grid moves in uneven steps (77 columns,
+then 79), so the two numbers are measured and not computed:
 
 ```bash
-~/workspace/my-cli-config/ghostty/fit-window.sh --write 96 20
+~/workspace/my-cli-config/ghostty/fit-window.sh --write 96 25
 ```
 
 The script opens a few windows for about three seconds each, reads the grid of every one, and writes
-the two lines that give exactly 96 columns and 20 rows into `~/.config/ghostty/local`; without
-`--write` it only prints them. Run it again after a change of `font-size` or of the scale. When the
+the two lines that give exactly 96 columns and 25 rows into `~/.config/ghostty/local`, under a comment
+line that names the size they were measured for (`# fit-window.sh asked for 96 columns by 25 rows`);
+without `--write` it only prints them. Run it again after a change of `font-size`, of the scale or of
+the shared size, because numbers measured for another size give another grid. When the
 grid skips the wanted width at the size of the letters of a machine, the script says so: at the
 scale 1.25 with `font-size = 10.5` the grid goes from 94 columns to 96, so 95 cannot be had there.
 On a machine where the text is not scaled the local file needs no such lines. At the scale 1.25 a

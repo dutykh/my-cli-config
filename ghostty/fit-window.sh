@@ -7,12 +7,13 @@
 # Finds the two numbers, window-width and window-height, that make a new Ghostty window open with
 # exactly COLUMNS columns and ROWS rows on this machine, and prints them as lines for
 # ~/.config/ghostty/local. With --write it puts them into that file in place of the old ones, after
-# keeping the old file as local.before-fit.
+# keeping the old file as local.before-fit. A comment line above the two numbers names the size
+# that they were measured for: "# fit-window.sh asked for 96 columns by 25 rows".
 #
 # Why it is needed. On GNOME with the text scaled (gsettings get org.gnome.desktop.interface
 # text-scaling-factor above 1) Ghostty draws the letters at that scale but sizes a new window from
 # letters that are not scaled, so the grid comes out smaller than window-width by window-height: 77
-# by 14 for the shared 96 by 20 at the scale 1.25. The error depends on the size of the letters and
+# columns for a request of 96 at the scale 1.25. The error depends on the size of the letters and
 # on the title bar, and the grid moves in uneven steps (77 columns, then 79), so the numbers are
 # measured, not computed: each trial opens a window, waits until it has settled and reads its grid
 # with stty. Run it again after every change of font-size or of the scale of the text.
@@ -136,14 +137,16 @@ trial "$found_w" "$found_h" && [ "$c" -eq "$cols" ] && [ "$r" -eq "$rows" ] || {
 }
 printf 'checked: %s by %s gives %s columns and %s rows\n\n' "$found_w" "$found_h" "$c" "$r"
 
+# The comment line above the two numbers records the size that they were measured for.
+marker="# fit-window.sh asked for $cols columns by $rows rows"
 if [ "$write" -eq 1 ]; then
     [ -f "$local_file" ] && cp -p "$local_file" "$local_file.before-fit"
     {
-        [ -f "$local_file" ] && grep -v -E '^[[:space:]]*(window-width|window-height)[[:space:]]*=' "$local_file"
-        printf 'window-width = %s\nwindow-height = %s\n' "$found_w" "$found_h"
+        [ -f "$local_file" ] && grep -v -E '^[[:space:]]*(window-width|window-height)[[:space:]]*=|^# fit-window\.sh asked for ' "$local_file"
+        printf '%s\nwindow-width = %s\nwindow-height = %s\n' "$marker" "$found_w" "$found_h"
     } > "$scratch/local.new"
     cat "$scratch/local.new" > "$local_file"
     echo "written to $local_file (the earlier file is local.before-fit)"
 else
-    printf 'window-width = %s\nwindow-height = %s\n' "$found_w" "$found_h"
+    printf '%s\nwindow-width = %s\nwindow-height = %s\n' "$marker" "$found_w" "$found_h"
 fi
