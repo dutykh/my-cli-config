@@ -18,13 +18,16 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 * The file `ghostty/config.ghostty` chooses `tokyo-night-moon`, and `docs/palette.py` measures it
   beside Tokyo Night and its Day companion: text 10.3, colour 8 3.1, selected text 6.8, cursor 10.3.
   The pictures of `docs/` show the Moon theme.
-* **`ghostty/`**: a new window has 96 columns and 25 rows, in place of 78 by 20. On a desktop that
-  scales its text by 1.25 the plain request gives 77 columns, and `fit-window.sh --write 96 25`
-  measures the request of the local file (a width of 120 at `font-size = 10.5`). The width 95 was
-  tried first and left, because at that size of the letters the grid goes from 94 columns to 96. The
-  script writes a comment line above the two numbers that names the size they were measured for
-  (`# fit-window.sh asked for 96 columns by 25 rows`), so that a machine whose local file holds
-  numbers measured for another size can be told from one that was measured again.
+* **`ghostty/`**: a new window has 96 columns and 25 rows, in place of 78 by 20. The grid that a
+  request gives differs from machine to machine. On a desktop that scales its text by 1.25 the plain
+  request gives 77 columns, and `fit-window.sh --write 96 25` measures the request of the local file
+  (a width of 120 at `font-size = 10.5`). On a desktop with unscaled text the plain request can give
+  a wider grid (98 columns for 96 on one machine, where 94 gives exactly 96), so every machine
+  measures its own request. The width 95 was tried first and left, because at that size of the
+  letters the grid goes from 94 columns to 96. The script writes a comment line above the two numbers
+  that names the size they were measured for (`# fit-window.sh asked for 96 columns by 25 rows`), so
+  that a machine whose local file holds numbers measured for another size, or none, can be told from
+  one that was measured again.
 * **`tmux/`**: the session pill of the status line wears the Moon blue `#82AAFF` with the dark text
   `#1E2030`, like the first pill of the prompt.
 

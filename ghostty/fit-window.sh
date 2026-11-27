@@ -10,10 +10,12 @@
 # keeping the old file as local.before-fit. A comment line above the two numbers names the size
 # that they were measured for: "# fit-window.sh asked for 96 columns by 25 rows".
 #
-# Why it is needed. On GNOME with the text scaled (gsettings get org.gnome.desktop.interface
-# text-scaling-factor above 1) Ghostty draws the letters at that scale but sizes a new window from
-# letters that are not scaled, so the grid comes out smaller than window-width by window-height: 77
-# columns for a request of 96 at the scale 1.25. The error depends on the size of the letters and
+# Why it is needed. The grid that a request gives is not the request. On GNOME with the text scaled
+# (gsettings get org.gnome.desktop.interface text-scaling-factor above 1) Ghostty draws the letters
+# at that scale but sizes a new window from letters that are not scaled, so the grid comes out
+# smaller than window-width by window-height: 77 columns for a request of 96 at the scale 1.25. On
+# a desktop where the text is not scaled the grid can be wider: 98 columns for a request of 96 on
+# one machine, where 94 gives exactly 96. The error depends on the size of the letters and
 # on the title bar, and the grid moves in uneven steps (77 columns, then 79), so the numbers are
 # measured, not computed: each trial opens a window, waits until it has settled and reads its grid
 # with stty. Run it again after every change of font-size or of the scale of the text.
