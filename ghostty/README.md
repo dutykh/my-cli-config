@@ -47,6 +47,7 @@ left on purpose.
 | Long commands report | `notify-on-command-finish = unfocused` | A command of 30 seconds or more sends a notification of the desktop when it ends, only if the terminal does not have the keyboard, and without the bell. |
 | No toast at each copy | `app-notifications = no-clipboard-copy` | The notice after a reload of the configuration stays. |
 | Remote machines | `shell-integration-features = ssh-env` | Over ssh the other side is told `xterm-256color`, which every machine knows, and nothing is installed there. |
+| Programs outside the snap | `linux-cgroup = always` | Each window, tab and split gets a scope of systemd of its own. With the snap of Ghostty, a program that starts in a window otherwise lives in the scope of the snap and counts as part of it. Files started by `nautilus` then hands every file to the desktop portal, which asks which program to use at each PDF, and on Ubuntu 26.04 the portal never keeps the answer for a snap, even after the same choice three times. In a scope of its own the program is an ordinary one and opens a PDF in the program that the desktop names. Opening a window takes about a hundred milliseconds longer. |
 | Contrast left alone | no line | The colours are made readable in the theme files. A floor on the contrast would repaint coloured text in black or white. |
 | Nothing decorative | no line | No transparency, no blur, no background picture, no shader. |
 

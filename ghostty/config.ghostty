@@ -87,6 +87,13 @@ app-notifications = no-clipboard-copy
 # Over ssh the remote machine is told xterm-256color, which every machine knows.
 shell-integration-features = ssh-env
 
+# Each window, tab and split puts its programs into a scope of systemd of its own. When Ghostty is
+# a snap, a program that starts in the scope of the snap counts as part of the snap, and Files then
+# hands every file to the desktop portal, which asks which program to use at each PDF and, on
+# Ubuntu 26.04, never keeps the answer. In a scope of its own such a program is an ordinary one,
+# and a PDF opens in the program that the desktop names for PDF files.
+linux-cgroup = always
+
 # ── Keys ─────────────────────────────────────────────────────────────────────────────────────
 # The keys of the Herdr window, wherever both programs have the same action. The other keys
 # are those of Ghostty: ghostty +list-keybinds

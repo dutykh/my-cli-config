@@ -39,6 +39,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 * `docs/ansi2png.py` draws the powerline arrows and the rounded caps as shapes that fill the cell, as
   terminals do, so the pictures show no step between a cap and its segment. `docs/make-previews.sh`
   renders the prompt with the real login, so the pictures show no user name, as on a local machine.
+* **`ghostty/config.ghostty`**: `linux-cgroup = always`. Each window, tab and split puts its programs into
+  a scope of systemd of its own, outside the scope of the snap of Ghostty. A program that starts in the
+  scope of the snap, such as Files typed in a window, counts as part of the snap and hands every file to
+  the desktop portal, which then asks which program to use at each PDF and, on Ubuntu 26.04, keeps no
+  answer for a snap. In a scope of its own the program opens a PDF in the program named for PDF files.
 
 ## 0.2.0 (2026-11-24)
 
